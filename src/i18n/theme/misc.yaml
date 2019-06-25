@@ -1,0 +1,7 @@
+stelace:
+  service_powered_by_stelace:
+    en: "This Heroes platform demo runs on Stelace Λ"
+    fr: "Cette plateforme de démonstration est réalisée avec Stelace Λ"
+  made_with_love:
+    en: Made with ❤️ by {name, select, other{{name}} undefined{}}
+    fr: Fait avec ❤️ par {name, select, other{{name}} undefined{}}

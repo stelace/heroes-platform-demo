@@ -1,0 +1,90 @@
+[Settings]
+  # ID = "automatically set by Netlify or equal to $NETLIFY_ID_FOR_PRODUCTION when applicable"
+
+[Build]
+  Publish = "dist/spa"
+  Functions = ""
+
+# Note that headers and redirects are shared across all deploy contexts
+# https://www.netlify.com/docs/netlify-toml-reference/
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Allowing sameorigin for stelace dashboard content live-editor
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    # Only changing this to "all" on production branch (cf. production context below)
+    X-Robots-Tag = "noindex, nofollow"
+
+
+# Order of redirects matters
+
+# Serving HTML file
+[[redirects]]
+  from = "/stelace"
+  to = "https://dashboard.stelace.com/"
+  force = true
+  status = 200
+
+# All dashboard routes
+[[redirects]]
+  from = "/stelace/*"
+  to = "https://dashboard.stelace.com/stelace/:splat"
+  force = true
+  status = 200
+
+# SPA history mode routing. Keep this last:
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+
+# For "Netlify deploy" template button
+[template.environment]
+  STELACE_PUBLISHABLE_API_KEY = "Stelace publishable API key to use like pubk_test_…"
+  VUE_APP_SERVICE_NAME = "Injected in various contents such as default translations"
+  VUE_APP_DEFAULT_LANGUAGE = "en/fr translations included"
+  VUE_APP_DEFAULT_CURRENCY = "ISO code like USD or USD"
+  VUE_APP_MAPBOX_STYLE = "Mapbox tiles style such as mapbox://styles/mapbox/streets-v11"
+  VUE_APP_MAPBOX_TOKEN = "Not needed if token is included in style URL, as it is with Maptiler service"
+  VUE_APP_GOOGLE_ANALYTICS_ID = "Provide this to enable Google Analytics (UA-XXXXXXXX-1)"
+
+
+# Continuous deployment
+
+[context.production]
+  # Production-specific X-Robots-Tag header
+  command = "sed -i 's/noindex, nofollow/all/g' netlify.toml && yarn build"
+
+  [context.production.environment]
+    VUE_APP_SERVICE_NAME = "Stelace Heroes Demo"
+
+    # Filling these in Netlify UI rather than here
+    # to avoid leaking and commiting secrets to repo:
+
+    # Stelace publishable key
+    # STELACE_PUBLISHABLE_API_KEY
+
+    # Map
+    # VUE_APP_MAPBOX_STYLE
+
+    # Analytics
+    # VUE_APP_GOOGLE_ANALYTICS_ID
+
+[context.dev]
+  # command = "yarn build"
+  [context.dev.environment]
+    VUE_APP_SERVICE_NAME = "Stelace Heroes Demo"
+    VUE_APP_GOOGLE_ANALYTICS_ID = "UA-XXXXXXXX-1"
+    VUE_APP_CDN_UPLOAD_PREFIX = "dev/cd"
+
+# Deploy-preview context must be set explicitly.
+# It is expected to be roughly the same as dev branch context
+[context.deploy-preview]
+  # command = "yarn build"
+  [context.deploy-preview.environment]
+    VUE_APP_SERVICE_NAME = "Stelace Heroes Demo"
+    VUE_APP_GOOGLE_ANALYTICS_ID = "UA-XXXXXXXX-1"
+    VUE_APP_CDN_UPLOAD_PREFIX = "dev/cd"

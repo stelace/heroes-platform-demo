@@ -1,0 +1,37 @@
+{
+  "name": "Stelace Heroes Platform Demo",
+
+  "userFont": "Play",
+
+  "userFontNormal": "https://fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jL.woff2",
+  "userFontMedium": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2",
+  "userFontBold": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf6.woff2",
+  "userFontDisplay": "fallback",
+  "userFontLegacyFormat": "woff",
+  "userFontNormalLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jN.woff",
+  "userFontMediumLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf8.woff",
+  "userFontBoldLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf8.woff",
+
+  "roundedTheme": false,
+  "pageTransitions": true,
+
+  "homeHasLightBackground": true,
+  "homeSearchCardBackground": "rgba(0, 0, 0, 0.6)",
+  "hasSVGActionButton": true,
+
+  "baseImageAspectRatioWidth": 3,
+  "baseImageAspectRatioHeight": 2,
+  "baseImageWidth": 600,
+  "avatarImageWidth": 96,
+
+  "primaryColor": "#1055B6",
+  "secondaryColor": "#AC0B70",
+  "accentColor": "#0F1D34",
+  "positiveColor": "#009966",
+  "negativeColor": "#C10015",
+  "infoColor": "#22A3BD",
+  "warningColor": "#ED7F12",
+
+  "homeHeroUrl": "https://stelace.com/blog/content/images/2017/03/RMNP_DaveDugdale_Blue-1.jpg",
+  "homeHeroBase64": ""
+}

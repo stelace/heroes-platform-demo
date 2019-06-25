@@ -1,0 +1,21 @@
+asset:
+  name_label:
+    en: Name
+    fr: Nom
+  history_label:
+    en: History
+    fr: Histoire
+  checkout_intro:
+    en: Do you need some help from {hero}?
+    fr: "Besoin de l’aide de {hero}\_?"
+  checkout_action:
+    en: |-
+      Assign 10-minute Mission {price, select,
+        undefined{}
+        other{for {price, number, currency}}
+      }
+    fr: |-
+      Confier une mission {price, select,
+        undefined{}
+        other{pour {price, number, currency} (10 min.)}
+      }

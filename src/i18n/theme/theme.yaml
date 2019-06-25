@@ -1,0 +1,65 @@
+heroes_theme:
+  github_button:
+    en: Fork me on Github
+    fr: Créer un fork Github
+  requester_name_label:
+    en: Your watcher name
+    fr: Votre nom de sentinelle
+  requester_name_context:
+    en: "{hero}’d probably like to know your name."
+    fr: "{hero} aimerait connaître votre nom."
+  fees_comment:
+    en: This hero applies fees to cover insurance and expenses.
+    fr: Ce héros demande un dédommagement ou une participation aux frais d’assurance.
+  get_api_key:
+    en: Get your own API key and start coding
+    fr: Créez votre clé API
+  about_button:
+    en: What is this
+    fr: En savoir plus
+  about[markdown]:
+    en: |-
+      __About this demo__
+
+      This demo leverages [Stelace API](https://stelace.com) to run a platform full of heroes operating in NYC.
+
+      - Play with friends and colleagues to see updates in real-time across your browsers
+      - Enjoy multi-lingual search (風の谷のナウシカ) and powerful filters
+      - Free your mind and imagine how many awesome things you could build, _from online marketplaces to real-time platforms_.
+
+      Please don’t hesitate to [comment or fork to build your own](https://github.com/stelace/heroes-platform-demo)
+      or just have a look at our [docs](https://stelace.com/docs) to get started.
+
+      [![Stelace-platform-runner](https://user-images.githubusercontent.com/12909094/59638847-c41f1900-9159-11e9-9fa5-6d7806d57c92.png)](https://stelace.com)
+
+      __Stelace features__
+
+      This template relies on [Stelace Search](https://stelace.com/pricing/search)
+      and event-based automation features provided by [Stelace Command](https://stelace.com/pricing/command).
+
+      The website itself is built with [Stelace Instant](https://stelace.com/pricing/instant),
+      including User management, Headless CMS and Signal API for real-time.
+      Additional features not used in this template are also available, such as Transactions, Ratings and Messaging.
+    # TODO: French translation
+    fr: |-
+      __À propos de cette démo (Anglais)__
+
+      This demo leverages [Stelace API](https://stelace.com) to run a platform full of heroes operating in NYC.
+
+      - Play with friends and colleagues to see updates in real-time across your browsers
+      - Enjoy multi-lingual search (風の谷のナウシカ) and powerful filters
+      - Free your mind and imagine how many awesome things you could build, _from online marketplaces to real-time platforms_.
+
+      Please don’t hesitate to [comment or fork to build your own](https://github.com/stelace/heroes-platform-demo)
+      or just have a look at our [docs](https://stelace.com/docs) to get started.
+
+      [![Stelace-platform-runner](https://user-images.githubusercontent.com/12909094/59638847-c41f1900-9159-11e9-9fa5-6d7806d57c92.png)](https://stelace.com)
+
+      __Stelace features__
+
+      This template relies on [Stelace Search](https://stelace.com/pricing/search)
+      and event-based automation features provided by [Stelace Command](https://stelace.com/pricing/command).
+
+      The website itself is built with [Stelace Instant](https://stelace.com/pricing/instant),
+      including User management, Headless CMS and Signal API for real-time.
+      Additional features not used in this template are also available, such as Transactions, Ratings and Messaging.

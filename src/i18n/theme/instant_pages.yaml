@@ -1,0 +1,34 @@
+instant_pages:
+  terms:
+    INSTANT_PAGE_PATH:
+      en: terms
+      fr: terms
+    meta_description:
+      en: Stelace Heroes Platform Demo terms of use
+      fr: Stelace Heroes Platform Demo terms of use
+    subheader:
+      en: "{SERVICE_NAME}"
+      fr: "{SERVICE_NAME}"
+    content[markdown]:
+      en: |-
+        Stelace Heroes is released by Stelace Team under [MIT license](https://stelace.com/stelace/heroes-platform-demo) to make it your own.
+
+        You can create an account in this demo to add your own Hero.
+
+        If you accept these conditions, Stelace team will send updates specific to this template by email.
+
+        You’re responsible for any content you publish on this website.
+        Should you find any offensive content, please flag the hero in [Search](/s) or get in touch on Github so we can fix this.
+
+        _This page is generated dynamically (Headless CMS relying on [Stelace Content API](https://stelace.com/docs/content))._
+      fr: |-
+        Stelace Heroes is publié sous [license MIT](https://stelace.com/stelace/heroes-platform-demo).
+
+        Vous avez la possibilité de créer un compte dans cette démonstration pour créer votre propre héros.
+
+        L’équipe Stelace est susceptible de vous envoyer des nouvelles spécifiques à ce template et informations sur l’API Stelace par email.
+
+        Vous êtes responsable des contenus que vous publiez sur ce site.
+        N’hésitez pas à signaler tout contenu abusif directement sur la page de [recherche](/s) ou à nous contacter via Github.
+
+        _Cette page est générée automatiquement (CMS reposant sur [l’API Stelace Content](https://stelace.com/docs/content))._

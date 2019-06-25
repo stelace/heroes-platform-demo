@@ -1,0 +1,14 @@
+pages:
+  new_asset:
+    header:
+      en: Create your own hero
+      fr: Créez votre propre héros
+    subheader:
+      en: Your hero will enjoy 48 hours of glory on {SERVICE_NAME}
+      fr: Votre héros restera présent sur {SERVICE_NAME} pendant 48 heures
+    form_header:
+      en: All heroes have an awesome name
+      fr: Tous les héros ont un nom bien à eux
+    picture_incentive:
+      en: Show your hero in action
+      fr: Mettez votre héros en scène

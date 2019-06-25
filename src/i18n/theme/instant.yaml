@@ -1,0 +1,39 @@
+instant:
+  config:
+    customAttributes:
+      speed_label:
+        en: Speed
+        fr: Vitesse
+      abilities_label:
+        en: Abilities
+        fr: Capacités
+      gender_label:
+        en: Gender
+        fr: Genre
+      staff_pick_label:
+        en: Stelace Staff Pick
+        fr: Favoris de l’équipe Stelace
+      starring_label:
+        en: Starring
+        fr: Interprété par
+      environment_label:
+        en: Environment hero
+        fr: Défenseur(e) de l’environnement
+      history_label:
+        en: History
+        fr: Histoire
+      on_mission_label:
+        en: On mission {requester, select, undefined{} other{assigned by {requester}}}
+        fr: En mission {requester, select, undefined{} other{confiée par {requester}}}
+      on_short_mission_label:
+        en: On short mission
+        fr: En mission courte
+      not_on_mission_label:
+        en: Idle
+        fr: En attente
+      visitor_missions_label:
+        en: Missions assigned by visitors
+        fr: Missions confiées par des visiteurs
+      flagged_label:
+        en: Flagged
+        fr: Signalé
