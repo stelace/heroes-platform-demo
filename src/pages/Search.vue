@@ -55,6 +55,10 @@ export default {
     missionDialogAsset () {
       return this.searchedAssets.find(a => a.id === this.missionDialogAssetId)
     },
+    missionDuration () {
+      const config = this.common.config
+      return get(config, 'stelace.instant.longMissionDurationInHours', 1)
+    },
     ...mapState([
       'auth',
       'search',
@@ -81,14 +85,15 @@ export default {
 
     // keeping track of generated markers, use assetIds as keys
     // We need full mapbox objects, stored outside of vue (reactivity not needed, and even full of bugs)
-    window.stlMapMarkers = {}
+    window.stlMapMarkers = window.stlMapMarkers || {}
 
     EventBus.$on('missionRequested', message => {
       this.notify('notification.mission_requested', {
         i18nValues: {
-          heroName: message.hero.name,
-          requesterName: message.requesterName || undefined
+          hero: message.hero.name,
+          requester: message.requesterName || undefined
         },
+        timeout: 10000
       })
     })
   },
@@ -97,7 +102,7 @@ export default {
   // In a tracking app, each asset could also generate its own custom Events (e.g. position update)
   async mounted () {
     await new Promise(resolve => setTimeout(resolve, 2000))
-    pMap(this.searchedAssets.filter(a => !a.customAttributes.onMission), async asset => {
+    pMap(this.searchedAssets.filter(this.endedMission), async asset => {
       await this.$store.dispatch('sendCustomEvent', {
         type: 'assign_mission',
         objectId: asset.id
@@ -172,8 +177,11 @@ export default {
     },
     getStatusClass (asset) {
       if (get(asset, 'metadata.visitorMission')) return '-visitor-mission'
-      else if (get(asset, 'customAttributes.onMission') === true) return '-busy'
+      else if (!this.endedMission(asset)) return '-busy'
       else return ''
+    },
+    endedMission (asset) {
+      return get(asset, 'metadata.endOfMission', 0) < new Date().getTime()
     },
     getMissionTooltipField (asset) {
       if (this.getStatusClass(asset) === '-visitor-mission') return 'config.customAttributes.on_mission_label'
@@ -470,7 +478,7 @@ export default {
       :maximized="$q.screen.lt.sm"
       @hide="onCloseMissionDialog"
     >
-      <div v-if="missionDialogAsset" class="row justify-between content-start bg-white rounded-borders mission-card">
+      <div v-if="missionDialogAsset" class="row justify-between bg-white rounded-borders mission-card">
         <div
           :class="[
             'col-12 q-pa-lg relative-position',
@@ -483,7 +491,7 @@ export default {
             field="checkout_intro"
             :options="{ hero: missionDialogAsset.name }"
           />
-          <div v-if="missionDialogAsset.available !== false && !missionDialogAsset.customAttributes.onMission">
+          <div v-if="missionDialogAsset.available !== false && endedMission(missionDialogAsset)">
             <div class="row q-pb-lg">
               <QInput
                 class="col-8"
@@ -506,7 +514,8 @@ export default {
                 color="primary"
                 class="text-bold"
                 :label="$t({ id: 'asset.checkout_action' }, {
-                  price: (missionDialogAsset.price * 10) || undefined
+                  price: (missionDialogAsset.price * missionDuration * 60) || undefined,
+                  nbHours: missionDuration
                 })"
                 @click="sendMissionCustomEvent"
               />
@@ -518,8 +527,11 @@ export default {
             field="on_mission_until"
             :options="{
               hero: missionDialogAsset.name,
-              endDate: missionDialogAsset.metadata.visitorMission && missionDialogAsset.metadata.endOfMission
-                ? new Date(missionDialogAsset.metadata.endOfMission) : undefined,
+              endDate: missionDialogAsset.metadata.endOfMission
+                ? new Date(missionDialogAsset.metadata.endOfMission + 60 * 1000) : undefined,
+              fullDate: new Date().getUTCDate()
+                !== new Date(missionDialogAsset.metadata.endOfMission + 60 * 1000).getUTCDate()
+                || undefined,
               requester: missionDialogAsset.metadata.requesterName || undefined
             }"
             class="q-my-md"
@@ -592,6 +604,8 @@ export default {
 .mission-card
   min-width: 65vw
   min-height: 15vw
+  @media (max-width: $breakpoint-xs-max)
+    align-content: flex-start
   .mission-image
     @media (min-width: $breakpoint-md-min)
       position: absolute

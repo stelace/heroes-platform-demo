@@ -48,7 +48,7 @@ export default {
     nbResultsPerPage: 24,
     defaultOrderBy: 'createdDate', // to use when there is no query to keep sorting by text relevance
     orderBy: null,
-    order: 'desc',
+    order: ['desc'],
     filters: {},
     customAttributesFilters: {}
   },

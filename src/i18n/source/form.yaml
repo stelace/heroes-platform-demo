@@ -56,6 +56,12 @@ form:
     maximum_price:
       en: Max
       fr: Maximum
+    sort:
+      en: Sort
+      fr: Trier
+    default_sorting:
+      en: Default
+      fr: Par défaut
     modes:
       default:
         en: Offers

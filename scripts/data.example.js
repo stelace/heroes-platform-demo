@@ -13,11 +13,14 @@ function computeDate (isoDate, duration, pastOrFuture = 'future') {
   return new Date(new Date(isoDate).getTime() + addOrSubtract * ms(duration)).toISOString()
 }
 const nycBounds = {
-  sw: '{ latitude: 40.632256, longitude: -73.886490 }', // south-west
-  ne: '{ latitude: 40.813502, longitude: -74.013432 }' // north-east
+  sw: { latitude: 40.632256, longitude: -73.886490 }, // south-west
+  ne: { latitude: 40.813502, longitude: -74.013432 } // north-east
 }
+const dailyMissions = process.env.LIVE_DEMO_VERSION !== 'true'
+const longMissionDurationInHours = dailyMissions ? 24 : 1
 
 module.exports = {
+  randomLocationBounds: nycBounds,
   assetTypes: {
     hero: {
       name: 'Hero',
@@ -60,7 +63,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
       validated: true,
       active: true,
       customAttributes: {
-        speed: 70, // awesome glider Nausicaä
+        speed: 70,
         gender: 'Female',
         abilities: ['Life awareness', 'Stamina', 'Flight', 'Communication with animals'],
         stelaceStaffPick: true,
@@ -90,6 +93,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
           serviceName: process.env.VUE_APP_SERVICE_NAME,
           locale: 'en',
           currency: 'USD',
+          longMissionDurationInHours,
           assetTypes: { // asset types available for asset creation
             'assetTypes::hero': {
               isDefault: true,
@@ -110,8 +114,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
                   'abilities',
                   'gender',
                   'stelaceStaffPick',
-                  'environmentHero',
-                  'onMission'
+                  'environmentHero'
                 ],
                 isActiveFor: [ // we could restrict any search mode to some types of visitors
                   'public',
@@ -272,23 +275,6 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
         }
       }
     },
-    // used for random missions assigned by Workflow
-    onMission: {
-      name: 'onMission',
-      type: 'boolean',
-      metadata: {
-        instant: {
-          i18n: {
-            label: {
-              entry: 'instant',
-              field: 'config.customAttributes.on_mission_label',
-              default: 'On mission'
-            },
-            description: {}
-          }
-        }
-      }
-    },
     visitorMissions: {
       name: 'visitorMissions',
       type: 'number',
@@ -397,7 +383,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
     }
   },
   /* eslint-disable no-template-curly-in-string */
-  // '`${computed.var}`' template strings wrapped in quotes can be used in Workflows,
+  // '`${computed.var}`' template strings can be used in plain strings in Workflows,
   // and will be evaluated during run.
   // Please note that backticks ` are not needed in endpointUri nor in endpointHeaders,
   // where only strings are expected and parsed as template strings anyway.
@@ -467,7 +453,11 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
           endpointMethod: 'POST',
           endpointUri: '/tasks',
           endpointPayload: {
-            recurringPattern: '"* * * * *"',
+            recurringPattern: `"${ // Mind the quotes
+              dailyMissions
+                ? `* ${new Date().getUTCHours + 1} * * *` // at next rounded hour, on every day
+                : '* * * * *' // every minute
+            }"`,
             eventType: '"assign_mission"',
             eventObjectId: 'asset.id'
           }
@@ -490,7 +480,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
           computed: {
             task: 'responses.missionRefreshTasks.results[0]'
           },
-          filter: `!!computed.task`,
+          stop: `!computed.task`,
           endpointMethod: 'DELETE',
           endpointUri: '/tasks/${computed.task.id}'
         }
@@ -503,14 +493,14 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
       event: 'assign_mission',
       computed: {
         // Can only use string literals to evaluate in computed currently, not objects
-        sw: nycBounds.sw,
-        ne: nycBounds.ne,
+        sw: JSON.stringify(nycBounds.sw),
+        ne: JSON.stringify(nycBounds.ne),
         // TODO: showcase more complex use case with transactions and availabilities
         isVisitorMission: '!!metadata.visitorMission',
         // roll a dice before assigning random missions (say to heroes getting 5 or 6)
         hasNewMission: '!!metadata.visitorMission || Math.floor(Math.random() * 6) <= 1',
-        tenMinutesFromNow: 'new Date().getTime() + 60 * 5 * 1000',
-        tenSecondsFromNow: 'new Date().getTime() + 10 * 1000',
+        longMissionEndDate: `new Date().getTime() + ${longMissionDurationInHours} * 60 * 60 * 1000`,
+        shortMissionEndDate: `new Date().getTime() + 30 * 1000 * ${dailyMissions ? 60 : 1}`,
         now: 'new Date().getTime()'
       },
       run: [
@@ -522,25 +512,26 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
             Visitor missions have highest priority and are assigned ignoring current short missions.
           `,
           stop: '!computed.missionEnded || _.isEmpty(asset)', // asset can be removed before receiving some event
+          skip: '!computed.hasNewMission',
           computed: {
             // Can only use string literals to evaluate in computed currently, not objects
             latitude: 'computed.sw.latitude + Math.random() * (computed.ne.latitude - computed.sw.latitude)',
             longitude: 'computed.ne.longitude + Math.random() * (computed.sw.longitude - computed.ne.longitude)',
             end: '_.get(asset, "metadata.endOfMission", 0)',
-            missionEnded: '!_.get(asset, "metadata.visitorMission") || !computed.end || computed.now > computed.end'
+            // visitor mission has highest priority
+            missionEnded: 'computed.isVisitorMission || !computed.end || computed.now > computed.end',
+            newEndOfMission: 'computed.isVisitorMission ? computed.longMissionEndDate : computed.shortMissionEndDate'
           },
           endpointMethod: 'PATCH',
           endpointUri: '/assets/${asset.id}',
           endpointPayload: {
-            // don’t update locations when there is no new mission
-            locations: 'computed.hasNewMission ? [{ latitude: computed.latitude, longitude: computed.longitude }] : undefined',
+            locations: '[{ latitude: computed.latitude, longitude: computed.longitude }]',
             customAttributes: {
-              onMission: 'computed.hasNewMission',
               // Don’t increment if it’s not a visitor mission, using undefined (ignored)
               visitorMissions: 'computed.isVisitorMission ? _.get(asset, "customAttributes.visitorMissions", 0) + 1 : undefined'
             },
             metadata: {
-              endOfMission: 'computed.isVisitorMission ? computed.longMissionEndDate : computed.shortMissionEndDate',
+              endOfMission: 'computed.newEndOfMission',
               visitorMission: 'computed.isVisitorMission',
               requesterName: 'metadata.requesterName || null'
             }
@@ -549,6 +540,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
         {
           name: 'signalHeroStatus',
           description: 'Send signal to refresh UI',
+          skip: '!computed.missionEnded && !computed.hasNewMission',
           endpointMethod: 'POST',
           endpointUri: '/signal',
           endpointPayload: {
@@ -556,7 +548,6 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
               heroId: 'asset.id',
               hero: 'responses.assignMission || asset',
               visitorMission: 'computed.isVisitorMission',
-              endOfMission: 'metadata.endOfMission',
               requesterName: 'metadata.requesterName'
             },
             // destination: '', // broadcast to all channels by default when no destination is specified

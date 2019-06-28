@@ -57,7 +57,7 @@ export async function searchAssets ({ state, rootState, rootGetters, commit, dis
     page: searchFilters.page,
     nbResultsPerPage: searchFilters.nbResultsPerPage,
     // preserve sorting by relevance when there is a text query and no explicit sorting order
-    orderBy: searchFilters.orderBy || (!state.query ? state.searchFilters.defaultOrderBy : null),
+    orderBy: searchFilters.orderBy || (!state.query ? searchFilters.defaultOrderBy : null),
     order: searchFilters.order,
 
     query: state.query,
@@ -158,8 +158,7 @@ export async function signal_heroStatus ({ commit }, { message }) {
     heroId: message.heroId,
     hero: message.hero,
     requesterName: message.requesterName,
-    visitorMission: message.visitorMission,
-    endOfMission: message.endOfMission
+    visitorMission: message.visitorMission
   })
 
   if (message.visitorMission) EventBus.$emit('missionRequested', message)

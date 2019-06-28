@@ -1,29 +1,42 @@
 notification:
   mission_requested:
     en: |-
-      {heroName} has started a new mission assigned by {requesterName, select,
-        other {{requesterName}.}
+      {hero} has started a new mission assigned by {requester, select,
+        other {{requester}.}
         undefined {an anonymous visitor.}
       }
     fr: |-
-      {heroName} travaille sur une mission confiée par {requesterName, select,
-        other {{requesterName}.}
+      {hero} travaille sur une mission confiée par {requester, select,
+        other {{requester}.}
         undefined {un visiteur anonyme.}
       }
   on_mission_until[markdown]:
     en: |-
       Sorry, {hero} is currently very {endDate, select,
         undefined {busy.}
-        other {busy and won’t be available before {endDate, time, short}.}
+        other {
+          busy and won’t be available before {fullDate, select,
+            undefined {{endDate, time, short}.}
+            other {{endDate, date, dateTime}.}
+          }
+        }
       } {requester, select,
         other{You can thank __{requester}__ about that.}
         undefined {}
       }
     fr: |-
       {hero} est malheureusement très {endDate, select,
-        undefined {occupé.}
-        other {occupé et ne terminera pas sa mission actuelle avant {endDate, time, short}.}
+        undefined {occupé(e).}
+        other {
+          occupé et ne terminera pas sa mission actuelle avant {endDate, time, short}{fullDate, select,
+            undefined {.}
+            other {, {endDate, date, short}.}
+          }
+        }
       } {requester, select,
         other{Merci à __{requester}__ pour cette mission supplémentaire.}
         undefined {}
       }
+  hero_available:
+    en: "{hero} is now available."
+    fr: "{hero} est disponible."

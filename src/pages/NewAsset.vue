@@ -38,6 +38,10 @@ export default {
       endDate: '',
       quantity: 1,
       locations: [],
+      randomLocationBounds: { // ~ NYC center bounds
+        sw: { latitude: 40.632256, longitude: -73.886490 }, // south-west
+        ne: { latitude: 40.813502, longitude: -74.013432 } // north-east
+      },
       options: ['option1'],
       selectedCategory: null,
       visibleStep: 1,
@@ -243,6 +247,14 @@ export default {
             }
           }
 
+          if (this.randomLocationBounds) {
+            const b = this.randomLocationBounds
+            this.locations = [{
+              latitude: b.sw.latitude + Math.random() * (b.ne.latitude - b.sw.latitude),
+              longitude: b.ne.longitude + Math.random() * (b.sw.longitude - b.ne.longitude)
+            }]
+          }
+
           const attrs = {
             // autogrow on name QInput makes it a textarea, with possible line returns
             name: this.name.replace('\n', ''),
@@ -279,7 +291,8 @@ export default {
 
           this.creatingAsset = false
 
-          // New asset is ready 🚀
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          // New asset should be ready for search 🚀
           this.$router.push({ name: 'search' })
         } catch (err) {
           this.creatingAsset = false

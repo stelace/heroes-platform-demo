@@ -16,6 +16,13 @@ export default {
     return {
       debounceSearchAssets: debounce(this.searchAssets, 500),
       selectedCustomAttributes: {},
+      sortVariables: [{
+        price: 'pricing.price_short_label'
+      }, {
+        speed: 'instant.config.customAttributes.speed_label'
+      }],
+      sortBy: null,
+      sortOrder: null
     }
   },
   computed: {
@@ -24,6 +31,12 @@ export default {
         return ''
       }
       return this.$t({ id: `form.search.modes.${this.search.searchMode}` })
+    },
+    sortLabel () {
+      if (this.sortBy) {
+        return this.$t({ id: values(this.sortBy)[0] })
+      }
+      return this.$t({ id: 'form.search.sort' })
     },
     isSearch () {
       return this.route.name === 'search'
@@ -164,6 +177,24 @@ export default {
       this.$store.commit(mutationTypes.SEARCH__SET_SEARCH_FILTERS, {
         customAttributesFilters: this.selectedCustomAttributes
       })
+    },
+    sort (v) {
+      this.sortBy = v
+
+      if (!v || !this.sortOrder) this.sortOrder = 'desc'
+
+      this.$store.commit(mutationTypes.SEARCH__SET_SEARCH_FILTERS, {
+        orderBy: !isEmpty(v) ? [Object.keys(v)[0]] : null,
+        order: this.sortOrder
+      })
+      this.triggerSearch()
+    },
+    toggleSortOrder () {
+      this.sortOrder = this.sortOrder === 'desc' ? 'asc' : 'desc'
+      this.$store.commit(mutationTypes.SEARCH__SET_SEARCH_FILTERS, {
+        order: this.sortOrder
+      })
+      this.triggerSearch()
     },
     triggerSearch () {
       this.setPriceRange()
@@ -326,6 +357,66 @@ export default {
       </QBadge>
     </QChip>
 
+    <QBtn
+      v-show="sortBy"
+      class="sort-button"
+      :icon="sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward'"
+      color="primary"
+      flat
+      dense
+      @click.stop="toggleSortOrder"
+    />
+    <QBtnDropdown
+      class="q-ml-xs"
+      :label="sortLabel"
+      :rounded="style.roundedTheme"
+      color="transparent"
+      text-color="primary"
+      icon="sort"
+      icon-right=""
+      unelevated
+      no-caps
+      dense
+    >
+      <QList>
+        <QItem
+          v-for="(v, i) in sortVariables"
+          :key="i"
+          v-close-popup
+          clickable
+          @click="sort(v)"
+        >
+          <QItemSection>
+            <QItemLabel>
+              {{ $t({ id: v[Object.keys(v)[0]] }) }}
+            </QItemLabel>
+          </QItemSection>
+        </QItem>
+        <QItem
+          v-show="sortBy"
+          v-close-popup
+          clickable
+          @click="sort(null)"
+        >
+          <QItemSection>
+            <QItemLabel>
+              <AppContent
+                tag="div"
+                entry="form"
+                field="search.default_sorting_details"
+              />
+              <AppContent
+                tag="div"
+                class="text-grey"
+                entry="form"
+                field="search.default_sorting"
+              />
+            </QItemLabel>
+          </QItemSection>
+        </QItem>
+      </QList>
+    </QBtnDropdown>
+
     <QDialog
       :value="showFilterDialog"
       maximized
@@ -382,7 +473,6 @@ export default {
               entry="form"
               field="search.features_label"
             />
-            <!-- re-render this component every time search mode changed -->
             <CustomAttributesEditor
               :definitions="customAttributes.filter(ca => ca.name !== 'speed')"
               :values="search.searchFilters.customAttributesFilters"
@@ -467,6 +557,9 @@ export default {
 <style lang="stylus" scoped>
 .search-filters-toolbar
   border-top 1px solid #EEE
+
+.sort-button
+  margin-right: -0.5rem
 
 .dialog-filters
   max-height: 100%

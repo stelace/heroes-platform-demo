@@ -9,6 +9,9 @@ form:
     maximum_price:
       en: Maximum Fee per min.
       fr: Rémunération max.
+    default_sorting_details:
+      en: "Relevance or creation date"
+      fr: "Pertinence ou date de création"
   error:
     missing_title:
       en: Required name
