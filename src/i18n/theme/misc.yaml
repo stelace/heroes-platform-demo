@@ -5,3 +5,21 @@ stelace:
   made_with_love:
     en: Made with ❤️ by {name, select, other{{name}} undefined{}}
     fr: Fait avec ❤️ par {name, select, other{{name}} undefined{}}
+  api:
+    en: Λ Stelace API
+    fr: API Stelace Λ
+  search_api:
+    en: Stelace Search API
+    fr: API Search Stelace
+  instant_api:
+    en: Stelace Instant API
+    fr: API Instant Stelace
+  user_api:
+    en: Stelace User API
+    fr: API User Stelace
+  content_api:
+    en: Stelace Content API
+    fr: API Content Stelace
+  command_api:
+    en: Stelace Command API
+    fr: API Command Stelace

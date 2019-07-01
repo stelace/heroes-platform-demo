@@ -7,6 +7,11 @@
       :access-token="accessToken"
       v-on="$listeners"
     />
+    <div class="running-on absolute-top q-pa-xs text-center">
+      <AppRunningOn link="https://stelace.com">
+        <AppContent entry="stelace" field="api" />
+      </AppRunningOn>
+    </div>
   </div>
 </template>
 
@@ -65,6 +70,10 @@ export default {
   background-color: $map-background-color
   &:not([class*="absolute-"])
     position relative
+
+  .running-on
+    z-index: 1 // above markers
+    left: auto
 
 [id^="stl-app-map-"]
   position absolute

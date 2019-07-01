@@ -60,6 +60,7 @@ export default {
 <template>
   <component
     :is="linkProperties.is"
+    class="anchor-text--reset"
     v-bind="linkProperties"
   >
     <slot />

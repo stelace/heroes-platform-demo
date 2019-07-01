@@ -536,6 +536,13 @@ export default {
             }"
             class="q-my-md"
           />
+
+          <div class="text-center q-my-lg">
+            <AppRunningOn link="https://stelace.com">
+              <AppContent entry="stelace" field="api" />
+            </AppRunningOn>
+          </div>
+
           <QExpansionItem
             :value="descriptionOpened"
             :label="$t({ id: 'asset.description_label' })"

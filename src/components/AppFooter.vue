@@ -57,7 +57,7 @@ export default {
       <AppLink
         v-for="(target, i) in footerLinks"
         :key="`${i}-${target.name}`"
-        class="anchor-text--reset col-12 col-md-4 flex flex-center"
+        class="col-12 col-md-4 flex flex-center"
         :to="target.name ? { name: target.name } : target.url"
       >
         <AppContent
@@ -72,7 +72,7 @@ export default {
           :key="net.url"
           :to="net.url"
           :aria-label="net.label"
-          class="anchor-text--reset s-icon-link"
+          class="s-icon-link"
         >
           <svg class="s-icon q-pa-sm">
             <use

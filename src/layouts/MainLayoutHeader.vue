@@ -170,7 +170,7 @@ export default {
         v-if="showAccountAvatar"
         :class="[
           isHome ? '' : 'text-primary',
-          'logo-container anchor-text--reset cursor-pointer q-mr-sm flex flex-center'
+          'logo-container cursor-pointer q-mr-sm flex flex-center'
         ]"
         :to="{ name: 'home' }"
         :aria-label="$t({ id: 'navigation.home' })"

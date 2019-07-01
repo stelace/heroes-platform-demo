@@ -345,7 +345,7 @@ export default {
       />
     </template>
 
-    <section class="q-pa-sm">
+    <section class="q-pa-xl">
       <QForm
         class="text-center stl-content-container stl-content-container--large margin-h-center q-mb-xl"
         name="newAsset"

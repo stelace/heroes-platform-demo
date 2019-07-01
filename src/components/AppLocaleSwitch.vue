@@ -37,21 +37,25 @@ export default {
         clickable
         @click="switchLang('en')"
       >
-        <QItemSection>
-          <QItemLabel>
-            EN
-          </QItemLabel>
+        <QItemSection :class="['text-center', content.locale === 'en' ? 'text-weight-bold' : '']">
+          English
         </QItemSection>
       </QItem>
       <QItem
         v-close-popup
+        class="text-center"
         clickable
         @click="switchLang('fr')"
       >
-        <QItemSection>
-          <QItemLabel>
-            FR
-          </QItemLabel>
+        <QItemSection :class="['text-center', content.locale === 'fr' ? 'text-weight-bold' : '']">
+          Français
+        </QItemSection>
+      </QItem>
+      <QItem>
+        <QItemSection class="text-center">
+          <AppRunningOn link="https://stelace.com/docs/content">
+            <AppContent entry="stelace" field="content_api" />
+          </AppRunningOn>
         </QItemSection>
       </QItem>
     </QList>

@@ -3,6 +3,7 @@ import AppAvatar from 'src/components/AppAvatar'
 import AppContent from 'src/components/AppContent'
 import AppFooter from 'src/components/AppFooter'
 import AppLink from 'src/components/AppLink'
+import AppRunningOn from 'src/components/AppRunningOn'
 import AppRatingStars from 'src/components/AppRatingStars'
 
 export default async ({ Vue }) => {
@@ -12,4 +13,5 @@ export default async ({ Vue }) => {
   Vue.component('AppFooter', AppFooter)
   Vue.component('AppLink', AppLink)
   Vue.component('AppRatingStars', AppRatingStars)
+  Vue.component('AppRunningOn', AppRunningOn)
 }

@@ -1,7 +1,7 @@
 stelace:
   powered_by:
-    en: We run on
-    fr: Expérience conçue par
+    en: Running on
+    fr: Conçu avec
     context: Platform provider’s branding
   service_powered_by_stelace:
     en: "{SERVICE_NAME} runs on Stelace Λ"

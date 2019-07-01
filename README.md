@@ -11,7 +11,7 @@ Feel free to fork, contribute or just make it your own :heart:.
 
 This template leverages Stelace API to run a platform full of super heroes operating in NYC.
 
-![stelace-heroes-platform-small](https://user-images.githubusercontent.com/12909094/60070314-80f31600-9716-11e9-9ed8-403f851748e4.gif)
+![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)
 
 Here is a more [precise description](./HEROES.md) of the demo, but we invite you to play with it live.
 

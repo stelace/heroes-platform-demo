@@ -508,6 +508,12 @@ export default {
             </div>
           </div>
 
+          <div class="text-center q-my-lg">
+            <AppRunningOn link="https://stelace.com/docs/search/">
+              <AppContent entry="stelace" field="search_api" />
+            </AppRunningOn>
+          </div>
+
           <div class="row justify-end items-center q-mt-lg">
             <QBtn
               v-close-popup

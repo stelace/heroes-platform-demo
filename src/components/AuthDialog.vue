@@ -292,6 +292,12 @@
           </q-btn>
         </form>
 
+        <div class="text-center q-py-md">
+          <AppRunningOn link="https://stelace.com/docs/users" :link-properties="{ target: '_blank' }">
+            <AppContent entry="stelace" field="user_api" />
+          </AppRunningOn>
+        </div>
+
         <q-btn
           v-if="type === 'login'"
           flat
