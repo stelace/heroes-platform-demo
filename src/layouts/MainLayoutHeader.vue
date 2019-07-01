@@ -2,6 +2,7 @@
 import { mapState, mapGetters } from 'vuex'
 import * as mutationTypes from 'src/store/mutation-types'
 
+import AppLocaleSwitch from 'src/components/AppLocaleSwitch'
 import AppLogo from 'src/components/AppLogo'
 import AppMiniLogo from 'src/components/AppMiniLogo'
 import SearchToolbar from 'src/components/SearchToolbar'
@@ -11,6 +12,7 @@ import AuthDialogMixin from 'src/mixins/authDialog'
 
 export default {
   components: {
+    AppLocaleSwitch,
     AppLogo,
     AppMiniLogo,
     SearchToolbar,
@@ -284,6 +286,8 @@ export default {
         flat
         @click="aboutDialogOpened = true"
       />
+
+      <AppLocaleSwitch />
 
       <AppLink
         to="https://github.com/stelace/heroes-platform-demo"
