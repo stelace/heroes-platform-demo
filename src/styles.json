@@ -3,14 +3,14 @@
 
   "userFont": "Play",
 
-  "userFontNormal": "https://fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jL.woff2",
-  "userFontMedium": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2",
-  "userFontBold": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf6.woff2",
+  "userFontNormal": "https://fonts.gstatic.com/s/play/v10/6aez4K2oVqwIvtU2Hw.woff2",
+  "userFontMedium": "",
+  "userFontBold": "https://fonts.gstatic.com/s/play/v10/6ae84K2oVqwItm4TCpAy2g.woff2",
   "userFontDisplay": "fallback",
   "userFontLegacyFormat": "woff",
-  "userFontNormalLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jN.woff",
-  "userFontMediumLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf8.woff",
-  "userFontBoldLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf8.woff",
+  "userFontNormalLegacy": "https://fonts.gstatic.com/s/play/v10/6aez4K2oVqwIvtU2GQ.woff",
+  "userFontMediumLegacy": "",
+  "userFontBoldLegacy": "https://fonts.gstatic.com/s/play/v10/6ae84K2oVqwItm4TCpAy3A.woff",
 
   "roundedTheme": false,
   "pageTransitions": true,

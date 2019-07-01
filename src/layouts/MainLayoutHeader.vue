@@ -302,7 +302,7 @@ export default {
           dense
         >
           <svg class="q-icon on-left">
-            <use xlink:href="assets/icons.svg#github" />
+            <use xlink:href="statics/images/custom-icons.svg#github" />
           </svg>
           <AppContent entry="heroes_theme" field="github_button" />
         </QBtn>

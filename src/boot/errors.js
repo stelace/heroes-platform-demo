@@ -26,8 +26,14 @@ export default async ({ Vue }) => {
     const isChunkError = err.message && (
       /Loading( CSS)? chunk .+ failed/i.test(err.message) ||
       // SPA index.html may be served instead of missing chunk
-      /Unexpected token </i.test(err.message)
+      /Unexpected token </i.test(err.message) ||
+      /expect.+</i.test(err.message)
     )
+
+    if (remoteLogger.message) {
+      // DEBUGGING for now
+      remoteLogger.message(`isChunkError: ${isChunkError}. ${err.message}`)
+    }
 
     if (isChunkError && window.location.hash !== '#reload') {
       window.location.hash = '#reload'
@@ -63,6 +69,7 @@ export default async ({ Vue }) => {
 
     Vue.prototype.$sentry = Sentry
     remoteLogger.capture = err => Sentry.captureException(err)
+    remoteLogger.message = msg => Sentry.captureMessage(msg)
   }
 
   Vue.prototype.$remoteLogger = remoteLogger

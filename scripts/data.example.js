@@ -71,9 +71,8 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
       },
       metadata: {
         images: [
-          { url: 'https://www.thereelbits.com/wp-content/uploads/2012/07/Nausicaa001f.jpeg' },
-          { url: 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2F6GCoYzxRIQ6zK%2Fgiphy.gif&f=1' },
-          { url: 'https://popnerdtv.com/wp-content/uploads/2017/01/a77a13899388ebe6fcdeacb8885b4bb0.jpg' }
+          { url: 'https://cdn.instant.stelace.com/p/238380/live/images/f36480ceb103ee38c3974832f9a427e6-Nausicaa_1.jpeg' },
+          { url: 'https://cdn.instant.stelace.com/p/238380/live/images/27c13dc286dccc909a970a6734b48e83-Nausicaa_2.gif' }
         ]
       }
     },

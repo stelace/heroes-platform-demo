@@ -57,9 +57,11 @@ module.exports = function (ctx) {
   // HTML content //
   // //////////// //
 
+  const defaultLanguage = process.env.VUE_APP_DEFAULT_LANGUAGE || 'en'
+
   const defaultStyles = JSON.parse(fs.readFileSync('src/styles.json', 'utf-8'))
   const localTranslations = JSON.parse(fs.readFileSync(`src/i18n/build/${
-    process.env.VUE_APP_DEFAULT_LANGUAGE || 'en'
+    defaultLanguage
   }.json`, 'utf-8'))
   const injectServiceName = (str) => {
     if (str) return str.replace(/({SERVICE_NAME})/, process.env.VUE_APP_SERVICE_NAME || 'Stelace Platform')
@@ -330,8 +332,8 @@ module.exports = function (ctx) {
           chain.plugins.delete('preload')
           chain.plugins.delete('prefetch')
 
-          const quasarI18nRegex = new RegExp(`i18n-q-${process.env.VUE_APP_DEFAULT_LANGUAGE}`)
-          const stelaceI18nRegex = new RegExp(`i18n-stl-${process.env.VUE_APP_DEFAULT_LANGUAGE}`)
+          const quasarI18nRegex = new RegExp(`i18n-q-${defaultLanguage}`)
+          const stelaceI18nRegex = new RegExp(`i18n-stl-${defaultLanguage}`)
           const iconFontRegex = /\.woff2(\?.*)?$/
           const appFontsRegex = /app-fonts/
           const landingChunksRegex = /[~\\/]landing[.~]/
@@ -416,7 +418,7 @@ module.exports = function (ctx) {
               // Merge all Quasar translations except for default
               name: 'i18n-q-lang',
               chunks: 'all',
-              test: new RegExp(`i18n-q-(?!${process.env.VUE_APP_DEFAULT_LANGUAGE})`),
+              test: new RegExp(`i18n-q-(?!${defaultLanguage})`),
               minChunks: 1,
               priority: -14,
               reuseExistingChunk: true
@@ -436,7 +438,7 @@ module.exports = function (ctx) {
         VUE_APP_SERVICE_NAME: JSON.stringify(process.env.VUE_APP_SERVICE_NAME || 'Stelace Platform'),
         VUE_APP_MAPBOX_STYLE: JSON.stringify(process.env.VUE_APP_MAPBOX_STYLE),
         VUE_APP_MAPBOX_TOKEN: JSON.stringify(process.env.VUE_APP_MAPBOX_TOKEN),
-        VUE_APP_DEFAULT_LANGUAGE: JSON.stringify(process.env.VUE_APP_DEFAULT_LANGUAGE),
+        VUE_APP_DEFAULT_LANGUAGE: JSON.stringify(defaultLanguage),
         VUE_APP_DEFAULT_CURRENCY: JSON.stringify(process.env.VUE_APP_DEFAULT_CURRENCY),
         VUE_APP_USE_PROD_FONTS_CSS: JSON.stringify(process.env.VUE_APP_USE_PROD_FONTS_CSS),
         VUE_APP_SENTRY_LOGGING_DSN: JSON.stringify(process.env.VUE_APP_SENTRY_LOGGING_DSN),
