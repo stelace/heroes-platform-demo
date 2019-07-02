@@ -43,13 +43,14 @@
 
 # For "Netlify deploy" template button
 [template.environment]
-  STELACE_PUBLISHABLE_API_KEY = "Stelace publishable API key to use like pubk_test_…"
-  VUE_APP_SERVICE_NAME = "Injected in various contents such as default translations"
-  VUE_APP_DEFAULT_LANGUAGE = "en/fr translations included"
-  VUE_APP_DEFAULT_CURRENCY = "ISO code like USD or USD"
-  VUE_APP_MAPBOX_STYLE = "Mapbox tiles style such as mapbox://styles/mapbox/streets-v11"
-  VUE_APP_MAPBOX_TOKEN = "Not needed if token is included in style URL, as it is with Maptiler service"
-  VUE_APP_GOOGLE_ANALYTICS_ID = "Provide this to enable Google Analytics (UA-XXXXXXXX-1)"
+  STELACE_PUBLISHABLE_API_KEY = "Required: Stelace publishable API key (pubk_test_…)"
+  VUE_APP_MAPBOX_STYLE = "Required: Map tiles provider style URL (we suggest Maptiler)"
+  # Style used in demo https://api.maptiler.com/maps/a224625b-43e1-4d84-9595-3b119e56dc32/style.json?key=YOUR_KEY
+  VUE_APP_MAPBOX_TOKEN = "Map token: not needed if token is included in style URL"
+  VUE_APP_SERVICE_NAME = "Service name: injected in various contents"
+  VUE_APP_DEFAULT_LANGUAGE = "Language: currently en (default) or fr"
+  VUE_APP_DEFAULT_CURRENCY = "Currency: ISO code like USD (default) or EUR"
+  VUE_APP_GOOGLE_ANALYTICS_ID = "Google Analytics ID: UA-XXXXXXXX-1"
 
 
 # Continuous deployment
