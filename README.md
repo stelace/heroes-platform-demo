@@ -9,9 +9,9 @@ Feel free to fork, contribute or just make it your own :heart:.
 
 ---
 
-This template leverages Stelace API to run a platform full of super heroes operating in NYC.
+This template leverages Stelace API to run a platform full of super heroes operating in NYC. __[Live Demo](https://heroes.demo.stelace.com/s)__
 
-![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)
+[![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
 
 Here is a more [precise description](./HEROES.md) of the demo, but we invite you to play with it live.
 
@@ -20,6 +20,8 @@ Free your mind and imagine how many cool things you could build on your own… F
 **What is Stelace?**
 
 [Stelace](https://stelace.com/) provides search, automation and marketplace infrastructure for Web platforms, ranging from search-intensive apps to online communities. Stelace offers powerful backend that lets you focus on what makes your platform unique.
+
+[API Docs](https://stelace.com/docs)
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 ---
