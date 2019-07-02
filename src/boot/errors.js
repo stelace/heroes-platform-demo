@@ -20,25 +20,7 @@ export default async ({ Vue }) => {
     // if (info) Vue.util.warn(`Error in ${info}: "${err.toString()}"`, vm)
     if (process.env.DEV) console.error(err) // eslint-disable-line
 
-    // Reload app and ignore cache to fix broken chunks after app update
-    // Stelace Signal helps to make it smoother for connected clients
-    // But some users can come back later and have missed "appUpdate" signal
-    const isChunkError = err.message && (
-      /Loading( CSS)? chunk .+ failed/i.test(err.message) ||
-      // SPA index.html may be served instead of missing chunk
-      /Unexpected token </i.test(err.message) ||
-      /expect.+</i.test(err.message)
-    )
-
-    if (remoteLogger.message) {
-      // DEBUGGING for now
-      remoteLogger.message(`isChunkError: ${isChunkError}. ${err.message}`)
-    }
-
-    if (isChunkError && window.location.hash !== '#reload') {
-      window.location.hash = '#reload'
-      window.location.reload(true)
-    }
+    handleChunkError(err)
   }
 
   // Must init sentry after customizing Vue.config.errorHandler
@@ -68,7 +50,10 @@ export default async ({ Vue }) => {
     })
 
     Vue.prototype.$sentry = Sentry
-    remoteLogger.capture = err => Sentry.captureException(err)
+    remoteLogger.capture = err => {
+      Sentry.captureException(err)
+      handleChunkError(err)
+    }
     remoteLogger.message = msg => Sentry.captureMessage(msg)
   }
 
@@ -77,4 +62,26 @@ export default async ({ Vue }) => {
 
 export function getRemoteLogger () {
   return remoteLogger
+}
+
+function handleChunkError (err) {
+  // Reload app and ignore cache to fix broken chunks after app update
+  // Stelace Signal helps to make it smoother for connected clients
+  // But some users can come back later and have missed "appUpdate" signal
+  const isChunkError = err.message && (
+    /Loading( CSS)? chunk .+ failed/i.test(err.message) ||
+    // SPA index.html may be served instead of missing chunk
+    /Unexpected token </i.test(err.message) ||
+    /expect.+</i.test(err.message)
+  )
+
+  if (remoteLogger.message) {
+    // DEBUGGING for now
+    remoteLogger.message(`isChunkError: ${isChunkError}. ${err.message}`)
+  }
+
+  if (isChunkError && window.location.hash !== '#reload') {
+    window.location.hash = '#reload'
+    window.location.reload(true)
+  }
 }
