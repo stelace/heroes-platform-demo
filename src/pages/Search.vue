@@ -8,6 +8,7 @@ import * as mutationTypes from 'src/store/mutation-types'
 import bezierEasing from 'bezier-easing'
 import { debounce, get, keys, set } from 'lodash'
 import pMap from 'p-map'
+import { event as gaEvent } from 'vue-analytics'
 
 import EventBus from 'src/utils/event-bus'
 
@@ -147,6 +148,12 @@ export default {
           visitorMission: true,
           requesterName: this.auth.requesterName
         }
+      })
+
+      gaEvent({
+        eventCategory: 'Interaction',
+        eventAction: 'heroMission',
+        eventLabel: get(this.missionDialogAsset, 'name')
       })
     },
     setRequesterName (name) {

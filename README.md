@@ -13,7 +13,7 @@ This template leverages Stelace API to run a platform full of super heroes opera
 
 [![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
 
-Here is a more [precise description](./HEROES.md) of the demo, but we invite you to play with it live.
+Here is a more [precise description](./HEROES.md) of the demo, but we invite you to play [live](https://heroes.demo.stelace.com/s).
 
 Free your mind and imagine how many cool things you could build on your own… From online marketplaces to real-time platforms.
 
@@ -23,7 +23,9 @@ Free your mind and imagine how many cool things you could build on your own… F
 
 [API Docs](https://stelace.com/docs)
 
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+A more complex [marketplace template](https://github.com/stelace/jobs-marketplace-template) is also available with additional marketplace features such as Ratings, gated access, Organizations or real-time messaging.
+
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![Netlify Status](https://api.netlify.com/api/v1/badges/6532f66b-bef6-40cd-963b-81f1481e3a69/deploy-status)](https://app.netlify.com/sites/stelace-heroes-platform-demo/deploys)
 ---
 
 ## Features

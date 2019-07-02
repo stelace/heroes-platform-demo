@@ -2,6 +2,8 @@
 import { mapState, mapGetters } from 'vuex'
 import * as mutationTypes from 'src/store/mutation-types'
 
+import { event as gaEvent } from 'vue-analytics'
+
 import AppLocaleSwitch from 'src/components/AppLocaleSwitch'
 import AppLogo from 'src/components/AppLogo'
 import AppMiniLogo from 'src/components/AppMiniLogo'
@@ -75,6 +77,15 @@ export default {
   methods: {
     toggleMenu (visible = !this.isMenuOpened) {
       this.$store.commit(mutationTypes.LAYOUT__TOGGLE_MENU, { visible })
+    },
+    openAboutDialog () {
+      this.aboutDialogOpened = true
+
+      gaEvent({
+        eventCategory: 'Interaction',
+        eventAction: 'aboutDialog',
+        eventLabel: this.content.locale
+      })
     },
     logout () {
       this.$store.dispatch('logout')
@@ -284,7 +295,7 @@ export default {
         align="between"
         dense
         flat
-        @click="aboutDialogOpened = true"
+        @click="openAboutDialog"
       />
 
       <AppLocaleSwitch />
