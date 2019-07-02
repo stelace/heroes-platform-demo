@@ -66,7 +66,7 @@ export default {
     ]),
     ...mapGetters([
       'getBaseImageUrl',
-      'getLargeImageUrl',
+      'getUnresizedImageUrl',
       'searchedAssets',
       'isSearchMapVisible',
       'defaultSearchMode',
@@ -593,7 +593,7 @@ export default {
           <QImg
             v-if="missionDialogAsset"
             class="mission-image"
-            :src="getLargeImageUrl(missionDialogAsset, {
+            :src="getUnresizedImageUrl(missionDialogAsset, {
               index: missionDialogAsset.metadata.images.length > 1 ? 1 : 0
             })"
             :alt="missionDialogAsset.name"
