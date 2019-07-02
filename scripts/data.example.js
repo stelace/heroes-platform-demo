@@ -350,7 +350,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
       password: 'good.corp@gmail.com',
       email: 'good.corp@gmail.com',
       displayName: 'Good Corp.',
-      roles: ['user', 'premium'],
+      roles: ['user'],
       metadata: {
         _private: {
           phone: '+33 1 23 45 67 89',
@@ -359,10 +359,6 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
       platformData: {
         instant: {
           accountActive: true,
-        },
-        _private: {
-          validTaxIds: ['FRAB123456789'],
-          premiumEndDate: computeDate(new Date().toISOString(), '30d')
         }
       },
     },
