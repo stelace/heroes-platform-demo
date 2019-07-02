@@ -1,4 +1,12 @@
 pages:
+  home:
+    meta_description:
+      en: Super Heroes join forces with Stelace Platform API in NYC.
+      fr: Découvrez comment des super-héros et Stelace combinent leur forces en plein New York.
+  search:
+    meta_description:
+      en: Super Heroes join forces with Stelace Platform API in NYC.
+      fr: Découvrez comment des super-héros et Stelace combinent leur forces en plein New York.
   new_asset:
     header:
       en: Create your own hero
