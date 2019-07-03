@@ -383,15 +383,20 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
   // Please note that backticks ` are not needed in endpointUri nor in endpointHeaders,
   // where only strings are expected and parsed as template strings anyway.
 
-  // You can also use Workflow contexts for easier maintenance. Please refer to API reference.
+  // You can also use Workflow contexts for easier maintenance.
+  // Please refer to API reference and docs (https://stelace.com/docs/command/workflows)
   workflows: {
     flagVisitorHero: {
       name: 'flagVisitorHero',
       description: `
         Flags hero using custom Event. Deactivates this Asset if it has already been flagged in the past.
-        Additional step could notify staff with an email or a Slack webhook.
+        Final step notifies staff with Slack webhook.
       `,
-      event: 'flag_hero',
+      event: 'flag_hero', // custom Event name triggering this Workflow
+      computed: {
+        // Using simple JavaScript expressions and lodash
+        shouldFlag: '!asset.platformData.createdByStelace && _.get(asset, "metadata.flags", 0) > 0'
+      },
       run: [
         {
           name: 'flag',
@@ -399,10 +404,20 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
           endpointMethod: 'PATCH',
           endpointUri: '/assets/${asset.id}',
           endpointPayload: {
-            active: '(!asset.platformData.createdByStelace && _.get(asset, "metadata.flags", 0)) > 0 ? false : undefined',
+            active: 'computed.shouldFlag ? false : undefined',
             metadata: {
               flags: '_.get(asset, "metadata.flags", 0) + 1'
             }
+          }
+        },
+        {
+          name: 'flagSlackNotif',
+          description: 'Notify Team on Slack when some hero is flagged.',
+          endpointMethod: 'POST',
+          skip: '!env.SLACK_WEBHOOK_URL', // secured environment variable set in Stelace Dashboard
+          endpointUri: '${env.SLACK_WEBHOOK_URL}',
+          endpointPayload: {
+            text: '`${asset.name} [${asset.id}] flagged on <heroes.demo.stelace.com|live demo>.`'
           }
         }
       ]
