@@ -13,7 +13,7 @@ This template leverages Stelace API to run a platform full of super heroes opera
 
 [![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
 
-Here is a more [precise description](./HEROES.md) of the demo, but we invite you to play [live](https://heroes.demo.stelace.com/s).
+Here is a [blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/) introducing this demo, and a more [precise description](./HEROES.md) of the demo, but we invite you to play [live](https://heroes.demo.stelace.com/s).
 
 Free your mind and imagine how many cool things you could build on your own… From online marketplaces to real-time platforms.
 
@@ -102,8 +102,7 @@ Please refer to [Quasar docs](https://v1.quasar-framework.org/) for more details
 5. Seed [data](./docs/development-data.md)
 
 ```
-cp scripts/data.example.js scripts/data.js
-node scripts/init-data.js
+yarn seed
 ```
 
 Enjoy your platform :)

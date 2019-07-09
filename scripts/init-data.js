@@ -4,6 +4,8 @@ const pMap = require('p-map')
 const pProps = require('p-props')
 const csv = require('csvtojson')
 const path = require('path')
+const fs = require('fs')
+const { execSync } = require('child_process')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 
@@ -15,6 +17,7 @@ let answers
 const initDataScript = 'initDataScript'
 // Useful to avoid removing objects not created by this script (use false value with caution)
 let shouldOnlyRemoveScriptObjects = true
+const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
 let existingData
 let createdData
@@ -92,6 +95,10 @@ async function run () {
 
   log(chalk.cyan.bold('\nStarting script…'))
 
+  if (!fs.existsSync('.data')) {
+    log('Creating data.js file from data.example.js')
+    execSync('cp scripts/data.example.js scripts/data.js')
+  }
   const data = require('./data')
 
   // Order matters
@@ -540,6 +547,18 @@ function getRealIdentifier (type, id, handler) {
   }
 }
 
-run()
-  .then(() => log(chalk.green.bold('\nSuccess\n')))
-  .catch(warn)
+if (!fs.existsSync(`.env.${env}`)) {
+  return warn(
+    `\nMissing .env file. Please start with "cp .env.example .env.${env}".\n` +
+      'More info is available in README.md.\n'
+  )
+} else if (!process.env.STELACE_SECRET_API_KEY) {
+  return log(chalk.cyan.bold(
+    '\nMissing STELACE_SECRET_API_KEY env variable.\n' +
+      'Please head over to https://stelace.com to ask your free key.\n'
+  ))
+} else {
+  run()
+    .then(() => log(chalk.green.bold('\nSuccess\n')))
+    .catch(warn)
+}
