@@ -2,20 +2,21 @@
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/stelace/heroes-platform-demo)
 
-# Stelace Heroes Platform demo
+# Stelace API Starter Kit
 
-> This Stelace template is free to use, under the terms of the [MIT license](./LICENSE).
+> This Stelace starter kit is free to use, under the terms of the [MIT license](./LICENSE).
 Feel free to fork, contribute or just make it your own :heart:.
 
 ---
 
-This template leverages Stelace API to run a platform full of super heroes operating in NYC. __[Live Demo](https://heroes.demo.stelace.com/s)__
+This starter kit leverages Stelace API to run a platform full of super heroes operating in NYC. __[Live Demo](https://heroes.demo.stelace.com/s)__
 
 [![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
 
 Here is a [blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/) introducing this demo, and a more [precise description](./HEROES.md) of the demo, but we invite you to play [live](https://heroes.demo.stelace.com/s).
 
-Free your mind and imagine how many cool things you could build on your own… From online marketplaces to real-time platforms.
+Free your mind and imagine how many cool things you could build on your own with Stelace API…
+From online marketplaces to real-time platforms.
 
 **What is Stelace?**
 
@@ -23,7 +24,7 @@ Free your mind and imagine how many cool things you could build on your own… F
 
 [API Docs](https://stelace.com/docs)
 
-A more complex [marketplace template](https://github.com/stelace/jobs-marketplace-template) is also available with additional marketplace features such as Ratings, gated access, Organizations or real-time messaging.
+A more complex [marketplace starter kit](https://github.com/stelace/jobs-marketplace-template) is also available with additional marketplace features such as Ratings, gated access, Organizations or real-time messaging.
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![Netlify Status](https://api.netlify.com/api/v1/badges/6532f66b-bef6-40cd-963b-81f1481e3a69/deploy-status)](https://app.netlify.com/sites/stelace-heroes-platform-demo/deploys)
 ---
@@ -59,28 +60,30 @@ Leverage these integrations to start running your platform even faster:
 
 ## Make it your own
 
-You first need to get your Stelace API Key. Good news: [it’s free](https://stelace.com/pricing).
+You first need to get your Stelace API keys. Good news: [it’s free](https://stelace.com/pricing).
 
 1. Clone this repository
 
-```
+```sh
 git clone https://github.com/stelace/heroes-platform-demo.git
-cd stelace-instant
+cd heroes-platform-demo
 ```
 
 2. Install node_modules
 
-```
+```sh
+# using yarn instead of npm is recommended
 yarn
-# or
-npm install
 ```
+
+> If you don’t have [yarn](https://yarnpkg.com/) installed, you can follow these [instructions](https://yarnpkg.com/docs/install).
 
 3. Create environment files for development and production.
 You can copy `.env.example` and fill it with Stelace API keys.
 
-```
+```sh
 cp .env.example .env.development
+# You may want to use live keys in this file
 cp .env.example .env.production
 ```
 
@@ -88,22 +91,24 @@ You need to fill the following environment variables:
 
 - STELACE_*PUBLISHABLE_API_KEY (pubk_*...) used in Vue app
 - STELACE_*SECRET_API_KEY (seck_*...) used in data seeding scripts
+- VUE_APP_MAPBOX_STYLE to activate the map. You can use demo dark map style by including a [Maptiler](
+  https://www.maptiler.com/cloud/
+) API token in this URL: `https://api.maptiler.com/maps/a224625b-43e1-4d84-9595-3b119e56dc32/style.json?key=YOUR_KEY`
 
-4. Start the development server
+4. Seed [data](./docs/development-data.md)
 
+```sh
+yarn seed
 ```
+
+5. Start front-end development server
+
+```sh
 yarn dev
-# or
-quasar dev
+# same as quasar dev
 ```
 
 Please refer to [Quasar docs](https://v1.quasar-framework.org/) for more details about configuration and info on components.
-
-5. Seed [data](./docs/development-data.md)
-
-```
-yarn seed
-```
 
 Enjoy your platform :)
 
@@ -117,6 +122,10 @@ Please refer to [deployment docs section](./docs/deployment.md) for more details
 
 ## Stelace Dashboard
 
-Create you own account for free to build your own platform and use [official Stelace dashboard](https://stelace.com), enabling your team to access real-time stats, settings, live design and content editing with translation tools, asset and user management and much more.
+Create you own account for free to build your own platform and use [official Stelace dashboard](
+  https://stelace.com
+), enabling your team to access real-time stats, settings, live design and content editing with translation tools, asset and user management and much more.
 
-[![Stelace Dashboard](https://user-images.githubusercontent.com/12909094/38527674-415ac06c-3c5c-11e8-89d3-c92c3be1d377.png)](https://stelace.com)
+[
+  ![Stelace Dashboard](https://user-images.githubusercontent.com/12909094/38527674-415ac06c-3c5c-11e8-89d3-c92c3be1d377.png)
+](https://stelace.com)

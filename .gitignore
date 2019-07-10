@@ -44,6 +44,9 @@ build/Release
 node_modules/
 jspm_packages/
 
+# We’re using yarn-lock
+package-lock.json
+
 # Typescript v1 declaration files
 typings/
 
