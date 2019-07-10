@@ -91,9 +91,11 @@ You need to fill the following environment variables:
 
 - STELACE_*PUBLISHABLE_API_KEY (pubk_*...) used in Vue app
 - STELACE_*SECRET_API_KEY (seck_*...) used in data seeding scripts
-- VUE_APP_MAPBOX_STYLE to activate the map. You can use demo dark map style by including a [Maptiler](
+- VUE_APP_MAPBOX_STYLE to activate the map. You can upload live demo [dark map style](/map/darknyc.json) with [Maptiler](
   https://www.maptiler.com/cloud/
-) API token in this URL: `https://api.maptiler.com/maps/a224625b-43e1-4d84-9595-3b119e56dc32/style.json?key=YOUR_KEY`
+) and get a [map style URL](
+  https://cloud.maptiler.com/maps/upload
+): `https://api.maptiler.com/maps/YOUR_MAP_STYLE_ID/style.json?key=MAPTILER_KEY`.
 
 4. Seed [data](./docs/development-data.md)
 
