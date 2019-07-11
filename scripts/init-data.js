@@ -10,7 +10,10 @@ const chalk = require('chalk')
 const inquirer = require('inquirer')
 
 const log = console.log
-const warn = str => console.warn(chalk.yellow(str))
+const warn = (err, msg) => {
+  if (msg) log(chalk.yellow(msg))
+  if (err) log(err)
+}
 const prompt = inquirer.createPromptModule()
 let answers
 
@@ -85,7 +88,7 @@ async function run () {
   }
 
   if (!answers.dailyMissionsVersion && answers.confirmLiveVersion) {
-    warn('\nUsing live demo version')
+    warn(null, '\nUsing live demo version')
     log('Run this script again to remove recurring tasks and workflows.')
     log('Otherwise you will quickly exceed free tier.')
     process.env.LIVE_DEMO_VERSION = 'true'
@@ -549,6 +552,7 @@ function getRealIdentifier (type, id, handler) {
 
 if (!fs.existsSync(`.env.${env}`)) {
   return warn(
+    null,
     `\nMissing .env file. Please start with "cp .env.example .env.${env}".\n` +
       'More info is available in README.md.\n'
   )
