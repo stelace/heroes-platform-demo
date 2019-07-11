@@ -95,7 +95,7 @@ async function run () {
 
   log(chalk.cyan.bold('\nStarting script…'))
 
-  if (!fs.existsSync('.data')) {
+  if (!fs.existsSync(path.join(__dirname, 'data.js'))) {
     log('Creating data.js file from data.example.js')
     execSync('cp scripts/data.example.js scripts/data.js')
   }
