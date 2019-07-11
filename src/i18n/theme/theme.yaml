@@ -19,7 +19,7 @@ heroes_theme:
     fr: Afficher un extrait de code API
   demo_intro:
     asset[markdown]:
-      en: |-
+      en: &asset |-
         ## Stelace Backend: starting with your Assets
 
         This starter kit runs on [Stelace Backend API](https://stelace.com)
@@ -29,9 +29,9 @@ heroes_theme:
         you want your [Users](https://stelace.com/docs/users) to find using
         [Search](https://stelace.com/docs/search):
         cars, houses, freelancers, events…
-      fr: ""
+      fr: *asset
     instant[markdown]:
-      en: |-
+      en: &instant |-
         ## Build any type of marketplace with Stelace API
 
         It’s really easy to build a two-sided marketplace where
@@ -40,9 +40,9 @@ heroes_theme:
         Stelace also includes [Messages](https://stelace.com/docs/messages),
         [Ratings](https://stelace.com/docs/ratings)
         and [Transactions](https://stelace.com/docs/transactions) APIs to run any type of platform.
-      fr: ""
+      fr: *instant
     search[markdown]:
-      en: |-
+      en: &search |-
         ## Search API
 
         Stelace API provides a powerful typo-tolerant [Search](https://stelace.com/docs/search)
@@ -50,9 +50,9 @@ heroes_theme:
         and advanced [filters](https://stelace.com/docs/search#filtering).
 
         _Hint: Try searching `風の谷` or `Supermxx`._
-      fr: ""
+      fr: *search
     workflow[markdown]:
-      en: |-
+      en: &workflow |-
         ## Event API, Workflows and integrations
 
         Flagging in this demo is another example of simple yet powerful serverless logic
@@ -68,9 +68,9 @@ heroes_theme:
 
         ![Heroes Demo Hero flag notification on Slack](
           https://cdn.instant.stelace.com/p/238380/live/dev/cd/images/06b526d096a8f4ac93f54a1951dd7f15-hero-flag-slack.png)
-      fr: ""
+      fr: *workflow
     event[markdown]:
-      en: |-
+      en: &event |-
         ## Stelace API: Automation and real-time
 
         With custom [Events](https://stelace.com/docs/command/events) you can enable any scenario
@@ -81,7 +81,7 @@ heroes_theme:
         in real-time. That’s how each hero Asset location and status are updated live on the map.
 
         _Hint: Try using the app with several devices/browsers to test live updates ;)_
-      fr: ""
+      fr: *event
   about_button:
     en: What is this?
     fr: En savoir plus
