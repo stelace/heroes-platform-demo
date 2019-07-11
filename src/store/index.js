@@ -9,6 +9,8 @@ import layout from './layout'
 import search from './search'
 import style from './style'
 
+import * as demo from './demo'
+
 Vue.use(Vuex)
 
 /*
@@ -26,6 +28,8 @@ export default function (/* { ssrContext } */) {
       layout,
       search,
       style,
+
+      demo
     }
   })
 

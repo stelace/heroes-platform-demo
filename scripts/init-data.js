@@ -1,5 +1,5 @@
 const stelace = require('./admin-sdk')
-const { every, get, isEmpty, keyBy, mapValues, pick } = require('lodash')
+const { every, get, isEmpty, keyBy, mapValues, pick, set } = require('lodash')
 const pMap = require('p-map')
 const pProps = require('p-props')
 const csv = require('csvtojson')
@@ -46,15 +46,15 @@ async function run () {
     {
       type: 'confirm',
       name: 'dailyMissionsVersion',
-      message: 'Recommended: use daily automated hero missions',
+      message: 'Recommended: use free-tier friendly automated tasks',
       default: true
     },
     {
       type: 'confirm',
-      name: 'confirmLiveVersion',
-      message: 'Warning: live version has recurring tasks running every minute for demo purpose only.\n' +
+      name: 'confirmLiveDemoVersion',
+      message: 'Warning: live demo version has recurring tasks running every minute for demo purpose only.\n' +
         'Using this version will likely exceed your Stelace Command free tier.\n' +
-        'Are you sure you want to deploy this live version?',
+        'Are you sure you want to deploy demo version?',
       when: answers => !answers.dailyMissionsVersion,
       default: false
     },
@@ -87,12 +87,12 @@ async function run () {
     log('\nYou may want to remove old Categories and Asset Types manually.')
   }
 
-  if (!answers.dailyMissionsVersion && answers.confirmLiveVersion) {
+  if (!answers.dailyMissionsVersion && answers.confirmLiveDemoVersion) {
     warn(null, '\nUsing live demo version')
     log('Run this script again to remove recurring tasks and workflows.')
     log('Otherwise you will quickly exceed free tier.')
     process.env.LIVE_DEMO_VERSION = 'true'
-  } else if (!answers.dailyMissionsVersion && !answers.confirmLiveVersion) {
+  } else if (!answers.dailyMissionsVersion && !answers.confirmLiveDemoVersion) {
     log('\nUsing version with daily automated missions instead of live demo version.')
   }
 
@@ -102,7 +102,9 @@ async function run () {
     log('Creating data.js file from data.example.js')
     execSync('cp scripts/data.example.js scripts/data.js')
   }
+
   const data = require('./data')
+  set(data, 'config.default.custom.isDemoMode', process.env.LIVE_DEMO_VERSION === 'true')
 
   // Order matters
   await cancelTransactions() // cannot remove transactions, so we cancel them instead

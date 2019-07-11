@@ -72,7 +72,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
       metadata: {
         images: [
           { url: 'https://cdn.instant.stelace.com/p/238380/live/images/f36480ceb103ee38c3974832f9a427e6-Nausicaa_1.jpeg' },
-          { url: 'https://cdn.instant.stelace.com/p/238380/live/images/27c13dc286dccc909a970a6734b48e83-Nausicaa_2.gif' }
+          { url: 'https://stelace-instant-files.s3.amazonaws.com/p/238380/live/images/27c13dc286dccc909a970a6734b48e83-Nausicaa_2.gif' }
         ]
       }
     },
@@ -87,6 +87,9 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
   },
   config: {
     default: {
+      custom: {
+        isDemoMode: true
+      },
       stelace: {
         instant: {
           serviceName: process.env.VUE_APP_SERVICE_NAME,

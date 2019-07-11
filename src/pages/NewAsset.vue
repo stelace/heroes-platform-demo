@@ -2,6 +2,7 @@
 import { get, values, groupBy } from 'lodash'
 import { mapState, mapGetters } from 'vuex'
 import { date } from 'quasar'
+import { event as gaEvent } from 'vue-analytics'
 
 import EventBus from 'src/utils/event-bus'
 import { isValidDateString } from 'src/utils/time'
@@ -210,6 +211,15 @@ export default {
         return
       }
 
+      // autogrow on name QInput makes it a textarea, with potential line return
+      const name = this.name.replace('\n', '')
+
+      gaEvent({
+        eventCategory: 'Interaction',
+        eventAction: 'createAsset',
+        eventLabel: name
+      })
+
       if (this.step > 3) {
         try {
           const uploadPending = this.uploaderFiles.length && this.assetImages.length < this.uploaderFiles.length
@@ -256,8 +266,7 @@ export default {
           }
 
           const attrs = {
-            // autogrow on name QInput makes it a textarea, with possible line returns
-            name: this.name.replace('\n', ''),
+            name,
             assetTypeId: this.selectedAssetType.id,
             description: this.description,
             price: this.price,

@@ -5,6 +5,10 @@ export default {
       type: String,
       default: 'info'
     },
+    flat: {
+      type: Boolean,
+      default: false
+    },
     link: {
       type: String,
       default: 'https://stelace.com/docs/'
@@ -27,16 +31,16 @@ export default {
     />
     <div>
       <AppLink :to="link" v-bind="linkProperties">
-        <QChip
-          class="text-weight-bold"
+        <QBtn
+          class="text-weight-bold q-ma-xs"
           :color="color"
-          text-color="white"
+          :flat="flat"
           square
         >
           <slot>
             <AppContent entry="stelace" field="api" />
           </slot>
-        </QChip>
+        </QBtn>
       </AppLink>
     </div>
   </div>

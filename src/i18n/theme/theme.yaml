@@ -14,6 +14,74 @@ heroes_theme:
   get_api_key:
     en: Get your own API key and start coding
     fr: Créez votre clé API
+  code_button:
+    en: Show me some API code
+    fr: Afficher un extrait de code API
+  demo_intro:
+    asset[markdown]:
+      en: |-
+        ## Stelace Backend: starting with your Assets
+
+        This starter kit runs on [Stelace Backend API](https://stelace.com)
+        to let you [build platforms in days](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/).
+
+        Your platform [Assets](https://stelace.com/docs/assets) can be _anything_
+        you want your [Users](https://stelace.com/docs/users) to find using
+        [Search](https://stelace.com/docs/search):
+        cars, houses, freelancers, events…
+      fr: ""
+    instant[markdown]:
+      en: |-
+        ## Build any type of marketplace with Stelace API
+
+        It’s really easy to build a two-sided marketplace where
+        [Users](https://stelace.com/docs/users) can create [Assets](https://stelace.com/docs/assets).
+
+        Stelace also includes [Messages](https://stelace.com/docs/messages),
+        [Ratings](https://stelace.com/docs/ratings)
+        and [Transactions](https://stelace.com/docs/transactions) APIs to run any type of platform.
+      fr: ""
+    search[markdown]:
+      en: |-
+        ## Search API
+
+        Stelace API provides a powerful typo-tolerant [Search](https://stelace.com/docs/search)
+        with time-based [availability](https://stelace.com/docs/search/availability) support
+        and advanced [filters](https://stelace.com/docs/search#filtering).
+
+        _Hint: Try searching `風の谷` or `Supermxx`._
+      fr: ""
+    workflow[markdown]:
+      en: |-
+        ## Event API, Workflows and integrations
+
+        Flagging in this demo is another example of simple yet powerful serverless logic
+        for your platform using Stelace [Workflows](https://stelace.com/docs/command/workflows):
+
+        1. A [custom Event](https://stelace.com/docs/command/events) is sent
+
+        2. A Workflow increments the number of flags for this
+        [Asset](https://stelace.com/docs/assets) and deactivates it once
+        a given number of flags has been reached.
+
+        3. Stelace staff gets notified on Slack in last Workflow step.
+
+        ![Heroes Demo Hero flag notification on Slack](
+          https://cdn.instant.stelace.com/p/238380/live/dev/cd/images/06b526d096a8f4ac93f54a1951dd7f15-hero-flag-slack.png)
+      fr: ""
+    event[markdown]:
+      en: |-
+        ## Stelace API: Automation and real-time
+
+        With custom [Events](https://stelace.com/docs/command/events) you can enable any scenario
+        on your platform using powerful [Workflows](https://stelace.com/docs/command/workflows).
+
+
+        [Signal API](https://stelace.com/docs/signal) lets you notify all your users or specific _channels_
+        in real-time. That’s how each hero Asset location and status are updated live on the map.
+
+        _Hint: Try using the app with several devices/browsers to test live updates ;)_
+      fr: ""
   about_button:
     en: What is this?
     fr: En savoir plus
@@ -21,7 +89,7 @@ heroes_theme:
     en: |-
       __About this demo__
 
-      This demo leverages [Stelace API](https://stelace.com) to run a platform full of heroes operating in NYC.
+      This UI starter kit features [Stelace Backend API](https://stelace.com) to run a platform full of heroes operating in NYC.
 
       - Play with friends and colleagues to see updates in real-time across your browsers
       - Enjoy multi-lingual search (風の谷のナウシカ) and powerful filters
@@ -44,7 +112,7 @@ heroes_theme:
     fr: |-
       __À propos de cette démo (Anglais)__
 
-      This demo leverages [Stelace API](https://stelace.com) to run a platform full of heroes operating in NYC.
+      This UI starter kit features [Stelace Backend API](https://stelace.com) to run a platform full of heroes operating in NYC.
 
       - Play with friends and colleagues to see updates in real-time across your browsers
       - Enjoy multi-lingual search (風の谷のナウシカ) and powerful filters

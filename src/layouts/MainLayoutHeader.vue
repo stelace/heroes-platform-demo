@@ -17,6 +17,7 @@ export default {
     AppLocaleSwitch,
     AppLogo,
     AppMiniLogo,
+    DemoIntroDialog: () => import(/* webpackChunkName: 'demo' */ 'src/components/DemoIntroDialog'),
     SearchToolbar,
     SelectCategories,
   },
@@ -161,6 +162,12 @@ export default {
       })
 
       this.searchAssets()
+    },
+    navigateToNewAsset () {
+      const cb = () => this.$router.push({ name: 'newAsset' })
+      // Moving on if demo mode is disabled,
+      // otherwise suspend action with callback
+      if (!this.showDemoIntroDialog('instant', cb)) cb()
     }
   }
 }
@@ -212,6 +219,7 @@ export default {
           :debounce="500"
           dense
           @input="updateQuery"
+          @focus="showDemoIntroDialog('search')"
         >
           <template v-slot:prepend>
             <QBtn
@@ -321,7 +329,6 @@ export default {
 
       <QBtn
         class="create-assset-button q-px-sm flex-item--auto text-weight-bold"
-        :to="{ name: 'newAsset' }"
         :loading="content.fetchingContentStatus"
         :rounded="style.roundedTheme"
         :label="$t({ id: 'navigation.new_listing' })"
@@ -329,6 +336,7 @@ export default {
         color="secondary"
         align="between"
         dense
+        @click="navigateToNewAsset"
       />
 
       <QBtn
@@ -494,6 +502,8 @@ export default {
         />
       </QCard>
     </QDialog>
+
+    <DemoIntroDialog v-if="common.config.custom.isDemoMode" ref="introDialog" />
 
     <SearchToolbar />
   </QHeader>

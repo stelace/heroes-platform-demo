@@ -28,7 +28,8 @@ export default {
         if (window && !window.mapboxgl) window.mapboxgl = mapbox.default
         return import(/* webpackChunkName: 'mapbox' */ 'src/components/AppMap')
       }),
-    AppMiniLogo
+    AppMiniLogo,
+    DemoIntroDialog: () => import(/* webpackChunkName: 'demo' */ 'src/components/DemoIntroDialog')
   },
   mixins: [
     PageComponentMixin,
@@ -59,6 +60,9 @@ export default {
     missionDuration () {
       const config = this.common.config
       return get(config, 'stelace.instant.longMissionDurationInHours', 1)
+    },
+    isMissionDialogAssetAvailable () {
+      return this.missionDialogAsset.available !== false && this.endedMission(this.missionDialogAsset)
     },
     ...mapState([
       'auth',
@@ -141,14 +145,22 @@ export default {
       await this.$store.dispatch('searchAssets')
     },
     sendMissionCustomEvent () {
-      this.$store.dispatch('sendCustomEvent', {
-        type: 'assign_mission',
-        objectId: this.missionDialogAssetId,
-        metadata: {
-          visitorMission: true,
-          requesterName: this.auth.requesterName
-        }
-      })
+      const objectId = this.missionDialogAssetId
+      const requesterName = this.auth.requesterName
+      const cb = async () => {
+        this.$store.dispatch('sendCustomEvent', {
+          type: 'assign_mission',
+          objectId,
+          metadata: {
+            visitorMission: true,
+            requesterName
+          }
+        })
+      }
+
+      // Moving on if demo mode is disabled,
+      // otherwise suspend action with callback
+      if (!this.showDemoIntroDialog('event', cb)) cb()
 
       gaEvent({
         eventCategory: 'Interaction',
@@ -163,6 +175,7 @@ export default {
       })
     },
     openMissionDialog (assetId) {
+      this.showDemoIntroDialog('asset')
       this.missionDialogAssetId = assetId
     },
     onCloseMissionDialog () {
@@ -388,12 +401,18 @@ export default {
         this.descriptionOpened = false
       }, 300)
     },
-    async flagHero (assetId) {
-      await this.$store.dispatch('sendCustomEvent', {
-        type: 'flag_hero',
-        objectId: assetId
-      })
-      this.notify('notification.flagged_content')
+    flagHero (assetId) {
+      const cb = async () => {
+        await this.$store.dispatch('sendCustomEvent', {
+          type: 'flag_hero',
+          objectId: assetId
+        })
+        this.notify('notification.flagged_content')
+      }
+
+      // Moving on if demo mode is disabled,
+      // otherwise suspend action with callback
+      if (!this.showDemoIntroDialog('workflow', cb)) cb()
     }
   }
 }
@@ -498,7 +517,7 @@ export default {
             field="checkout_intro"
             :options="{ hero: missionDialogAsset.name }"
           />
-          <div v-if="missionDialogAsset.available !== false && endedMission(missionDialogAsset)">
+          <div v-if="isMissionDialogAssetAvailable">
             <div class="row q-pb-lg">
               <QInput
                 class="col-8"
@@ -545,7 +564,7 @@ export default {
           />
 
           <div class="text-center q-my-lg">
-            <AppRunningOn link="https://stelace.com">
+            <AppRunningOn link="https://stelace.com" :flat="isMissionDialogAssetAvailable">
               <AppContent entry="stelace" field="api" />
             </AppRunningOn>
           </div>
@@ -608,6 +627,8 @@ export default {
         </div>
       </div>
     </QDialog>
+
+    <DemoIntroDialog v-if="common.config.custom.isDemoMode" ref="introDialog" />
   </QPage>
 </template>
 

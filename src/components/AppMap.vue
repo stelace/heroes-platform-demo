@@ -8,7 +8,7 @@
       v-on="$listeners"
     />
     <div class="running-on absolute-top q-pa-xs text-center">
-      <AppRunningOn link="https://stelace.com">
+      <AppRunningOn link="https://stelace.com/docs/getting-started">
         <AppContent entry="stelace" field="api" />
       </AppRunningOn>
     </div>

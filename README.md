@@ -97,7 +97,7 @@ You need to fill the following environment variables:
   https://cloud.maptiler.com/maps/upload
 ): `https://api.maptiler.com/maps/YOUR_MAP_STYLE_ID/style.json?key=MAPTILER_KEY`.
 
-4. Seed [data](./docs/development-data.md)
+4. Seed [data](./docs/development-data.md) and [workflows](https://stelace.com/docs/command/worflows).
 
 ```sh
 yarn seed

@@ -11,6 +11,7 @@ export default {
   components: {
     CustomAttributesEditor,
     // DateRangePicker,
+    DemoIntroDialog: () => import(/* webpackChunkName: 'demo' */ 'src/components/DemoIntroDialog')
   },
   data () {
     return {
@@ -108,6 +109,7 @@ export default {
     },
     toggleFilterDialog () {
       this.$store.commit(mutationTypes.TOGGLE_FILTER_DIALOG)
+      if (this.search.showFilterDialog) this.showDemoIntroDialog('search')
     },
     hideFilterDialog () {
       this.$store.commit(mutationTypes.HIDE_FILTER_DIALOG)
@@ -509,7 +511,7 @@ export default {
           </div>
 
           <div class="text-center q-my-lg">
-            <AppRunningOn link="https://stelace.com/docs/search/">
+            <AppRunningOn link="https://stelace.com/docs/search/" flat>
               <AppContent entry="stelace" field="search_api" />
             </AppRunningOn>
           </div>
@@ -544,6 +546,8 @@ export default {
         />
       </div>
     </QDialog>
+
+    <DemoIntroDialog v-if="common.config.custom.isDemoMode" ref="introDialog" />
 
     <QSpace />
 
