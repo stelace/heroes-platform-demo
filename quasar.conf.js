@@ -93,7 +93,7 @@ module.exports = function (ctx) {
   }
   const seo = {
     ogDesc: injectServiceName(_.get(localTranslations.pages, 'home.meta_description', '')),
-    ogImage: defaultStyles.homeHeroUrl,
+    ogImage: 'https://stelace-instant-files.s3.amazonaws.com/p/238380/live/images/af1bf21e4d018d7a42039495f86edb5f-heroes-code-split-screen.png',
     websiteUrl: process.env.STELACE_INSTANT_WEBSITE_URL
   }
 

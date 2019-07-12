@@ -1,12 +1,10 @@
 pages:
   home:
-    meta_description:
-      en: Super Heroes join forces with Stelace Platform API in NYC.
-      fr: Découvrez comment des super-héros et Stelace combinent leur forces en plein New York.
+    meta_description: &meta
+      en: Stelace API starter kit lets you build platforms in days with Search, automation and marketplace tooling.
+      fr: Démonstration de l’API Stelace accélérant le développement des plateformes grâce à de puissants outils de recherche et de gestion de marketplace.
   search:
-    meta_description:
-      en: Super Heroes join forces with Stelace Platform API in NYC.
-      fr: Découvrez comment des super-héros et Stelace combinent leur forces en plein New York.
+    meta_description: *meta
   new_asset:
     header:
       en: Create your own hero
