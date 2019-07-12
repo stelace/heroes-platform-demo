@@ -13,7 +13,9 @@ This starter kit leverages Stelace API to run a platform full of super heroes op
 
 [![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
 
-Here is a [blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/) introducing this demo, and a more [precise description](./HEROES.md) of the demo, but we invite you to play [live](https://heroes.demo.stelace.com/s).
+- [Stelace docs quick start](https://stelace.com/docs/getting-started)
+- [Blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/)
+- [More details](./HEROES.md) on how this works
 
 Free your mind and imagine how many cool things you could build on your own with Stelace API…
 From online marketplaces to real-time platforms.
@@ -79,11 +81,12 @@ yarn
 > If you don’t have [yarn](https://yarnpkg.com/) installed, you can follow these [instructions](https://yarnpkg.com/docs/install).
 
 3. Create environment files for development and production.
+
 You can copy `.env.example` and fill it with Stelace API keys.
 
 ```sh
 cp .env.example .env.development
-# You may want to use live keys in this file
+# You may want to use live Stelace API keys in this file
 cp .env.example .env.production
 ```
 
