@@ -98,6 +98,7 @@ export default {
       'common',
     ]),
     ...mapGetters([
+      'isDemoMode',
       'isSearchMapVisible',
       'searchOptions',
       'searchModes'
@@ -547,7 +548,7 @@ export default {
       </div>
     </QDialog>
 
-    <DemoIntroDialog v-if="common.config.custom.isDemoMode" ref="introDialog" />
+    <DemoIntroDialog v-if="isDemoMode" ref="introDialog" />
 
     <QSpace />
 

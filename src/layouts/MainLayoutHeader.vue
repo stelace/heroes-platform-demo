@@ -72,7 +72,8 @@ export default {
     ]),
     ...mapGetters([
       'currentUser',
-      'defaultSearchMode'
+      'defaultSearchMode',
+      'isDemoMode'
     ]),
   },
   methods: {
@@ -503,7 +504,7 @@ export default {
       </QCard>
     </QDialog>
 
-    <DemoIntroDialog v-if="common.config.custom.isDemoMode" ref="introDialog" />
+    <DemoIntroDialog v-if="isDemoMode" ref="introDialog" />
 
     <SearchToolbar />
   </QHeader>

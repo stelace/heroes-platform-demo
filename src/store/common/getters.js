@@ -38,3 +38,7 @@ export function ratingsOptions (state) {
 
   return ratingsOptions
 }
+
+export function isDemoMode (state) {
+  return state.config.custom && state.config.custom.isDemoMode
+}

@@ -73,6 +73,7 @@ export default {
       'getBaseImageUrl',
       'getUnresizedImageUrl',
       'searchedAssets',
+      'isDemoMode',
       'isSearchMapVisible',
       'defaultSearchMode',
     ]),
@@ -628,7 +629,7 @@ export default {
       </div>
     </QDialog>
 
-    <DemoIntroDialog v-if="common.config.custom.isDemoMode" ref="introDialog" />
+    <DemoIntroDialog v-if="isDemoMode" ref="introDialog" />
   </QPage>
 </template>
 
