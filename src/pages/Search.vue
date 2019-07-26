@@ -324,7 +324,9 @@ export default {
         if (markerEl && statusClass) markerEl.classList.add(statusClass)
 
         const coordinates = this.assetCoordinates[assetId]
-        const coordinatesChanged = coordinates.some((c, i) => c !== f.geometry.coordinates[i])
+        const coordinatesChanged = !coordinates || coordinates.some(
+          (c, i) => c !== f.geometry.coordinates[i]
+        )
 
         let previousCoordinates = coordinates
         let intermediateCoordinates = coordinates.slice(0)

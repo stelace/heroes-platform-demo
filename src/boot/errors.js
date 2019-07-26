@@ -49,7 +49,7 @@ export default async ({ Vue }) => {
         }),
       ],
       // https://github.com/quasarframework/quasar/issues/2233
-      ignoreErrors: ['ResizeObserver loop limit exceeded']
+      ignoreErrors: ['ResizeObserver loop']
     })
 
     Sentry.configureScope((scope) => {
