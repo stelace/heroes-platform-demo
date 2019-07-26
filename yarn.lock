@@ -1765,15 +1765,7 @@ autoprefixer@9.6.1:
     postcss "^7.0.17"
     postcss-value-parser "^4.0.0"
 
-axios@^0.18.0:
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.1.tgz#ff3f0de2e7b5d180e757ad98000f1081b87bcea3"
-  integrity sha512-0BfJq4NSfQXd+SkFdrvFbG7addhYSBA2mQwISr46pD6E5iqkWg02RAs8vyTT/j0RTnoYmeXauBuSv1qKwR179g==
-  dependencies:
-    follow-redirects "1.5.10"
-    is-buffer "^2.0.2"
-
-axios@~0.19.0:
+axios@^0.19.0, axios@~0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
   integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
@@ -8232,12 +8224,12 @@ static-extend@^0.1.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
-stelace@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/stelace/-/stelace-0.5.0.tgz#6b111ec0e6f43e252e6d8c13b0c5008f93775de7"
-  integrity sha512-fRYYLNRJG7tpuBzvRGjxl4GZDfbu0uoVgmxOZrbYWPoAVeK7wu2oHdlgrJv5mFDRNBY2I7Twb5zo+14kI+5OXw==
+stelace@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/stelace/-/stelace-0.7.0.tgz#73b9c70b6cf2f9ac066c2b98e68381789b139f2b"
+  integrity sha512-5rcUkNonNC9XTFnYjSzQnEMdc3ntxaiMf/hzkZBTVt8ejgaj3iVF/3kJlGDA9pjBTzdnhlcaaMqr+0QhSFUmVQ==
   dependencies:
-    axios "^0.18.0"
+    axios "^0.19.0"
     core-js "3"
     jwt-decode "^2.2.0"
     localstorage-memory "^1.0.2"
