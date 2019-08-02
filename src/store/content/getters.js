@@ -1,11 +1,28 @@
 import Vue from 'vue'
 import { get, isArrayLike, isEmpty } from 'lodash'
+import { Cdn } from 'sharp-aws-image-handler-client'
 
 import { mergeLocalAndAPIEntries, TRANSFORMED_KEYS } from 'src/utils/content'
-import { getImageUrl } from 'src/utils/image'
 
-const cdnUrl = process.env.VUE_APP_CDN_WITH_IMAGE_HANDLER_URL
-const cdnS3Url = process.env.VUE_APP_CDN_S3_URL
+const cdn = new Cdn({
+  base: process.env.VUE_APP_CDN_WITH_IMAGE_HANDLER_URL,
+  bucket: process.env.VUE_APP_CDN_S3_BUCKET,
+  servedFromCdnBucket: (uri, base, bucketUrl) => {
+    const devBucket = process.env.VUE_APP_CDN_S3_DEV_BUCKET
+
+    if (
+      uri.startsWith(base) ||
+      uri.startsWith(bucketUrl) ||
+      uri.startsWith('https://cdn.instant.stelace.com') // legacy domain
+    ) {
+      return true
+    } else if (devBucket && uri.startsWith(`https://${devBucket}.s3.`)) {
+      return devBucket
+    }
+
+    return false
+  }
+})
 
 export function entries (state) {
   const { apiEntries, localEntries, locale } = state
@@ -60,11 +77,9 @@ export function termsPath (state, getters) {
 export function homeHeroUrlTransformed (state, getters, rootState) {
   const url = rootState.style.homeHeroUrl || ''
 
-  if (url && servedFromCdn(url) && state.acceptWebP) {
-    return getImageUrl(url)
-  }
-
-  return url
+  return cdn.getUrl(url, {
+    webp: state.acceptWebP
+  })
 }
 
 export function placeholderImage (state, getters) {
@@ -96,11 +111,12 @@ export function largeImageHeight (state, getters, rootState, rootGetters) {
 export function getAvatarImageUrl (state, getters) {
   return (user, { resolution = 2 } = {}) => {
     const imgUri = user.avatarUrl || ''
-    // const avatarSquareSize = Math.round(resolution) * getters.avatarImageWidth
+    const avatarSquareSize = Math.round(resolution) * getters.avatarImageWidth
 
-    return servedFromCdn(imgUri)
-      ? getImageUrl(imgUri)
-      : imgUri
+    return cdn.getUrl(imgUri, {
+      webp: state.acceptWebP,
+      resize: { width: avatarSquareSize, height: avatarSquareSize }
+    })
   }
 }
 
@@ -109,9 +125,10 @@ export function getBaseImageUrl (state, getters) {
   return (resource, { accessorString, index = 0 } = {}) => {
     const imgUri = getImageUri(resource, { accessorString, index })
 
-    return servedFromCdn(imgUri)
-      ? getImageUrl(imgUri)
-      : imgUri
+    return cdn.getUrl(imgUri, {
+      webp: state.acceptWebP,
+      resize: { width: getters.baseImageWidth, height: getters.baseImageHeight }
+    })
   }
 }
 
@@ -119,19 +136,19 @@ export function getLargeImageUrl (state, getters) {
   return (resource, { accessorString, index = 0 } = {}) => {
     const imgUri = getImageUri(resource, { accessorString, index })
 
-    return servedFromCdn(imgUri)
-      ? getImageUrl(imgUri)
-      : imgUri
+    return cdn.getUrl(imgUri, {
+      webp: state.acceptWebP,
+      resize: { width: getters.largeImageWidth, height: getters.largeImageHeight }
+    })
   }
 }
 
-export function getUnresizedImageUrl (state, getters) {
-  return (resource, { accessorString, index = 0 } = {}) => {
+export function getUnresizedImageUrl (state) {
+  return (resource, { accessorString, index = 0, webp } = {}) => {
     const imgUri = getImageUri(resource, { accessorString, index })
 
-    return servedFromCdn(imgUri)
-      ? getImageUrl(imgUri)
-      : imgUri
+    if (webp) return cdn.getUrl(imgUri, { webp: state.acceptWebP })
+    else return imgUri
   }
 }
 
@@ -202,8 +219,4 @@ function getAccessorString (index) {
 
 function getImageUri (resource, { accessorString, index = 0 } = {}) {
   return accessorString ? get(resource, accessorString, '') : get(resource, getAccessorString(index), '')
-}
-
-function servedFromCdn (url) {
-  return typeof url === 'string' && (url.startsWith(cdnUrl) || url.startsWith(cdnS3Url))
 }

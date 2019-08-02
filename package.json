@@ -1,6 +1,6 @@
 {
   "name": "heroes-platform-demo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Platform demo featuring Super Heroes with Stelace API",
   "main": "index.js",
   "author": "Stelace (https://stelace.com)",
@@ -35,6 +35,7 @@
     "prismjs": "^1.16.0",
     "quasar": "~1.0.4",
     "socket.io-client": "~2.2.0",
+    "sharp-aws-image-handler-client": "https://github.com/stelace/sharp-aws-image-handler-client.git#0.1.0",
     "stelace": "0.7.0",
     "url-parse": "^1.4.4",
     "vue-analytics": "5.17.0",
