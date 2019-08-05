@@ -367,7 +367,7 @@ export default {
           <div class="row justify-center">
             <QInput
               v-model="name"
-              class="name-input"
+              class="row-input"
               :label="$t({ id: 'asset.name_label' })"
               :counter="name.length > nameMaxLength / 2"
               :maxlength="nameMaxLength"
@@ -375,7 +375,7 @@ export default {
                 name => !!name ||
                   $t({ id: 'form.error.missing_title' })
               ]"
-              debounce="1000"
+              debounce="500"
               autogrow
               required
             />
@@ -531,9 +531,11 @@ export default {
 </template>
 
 <style lang="stylus" scoped>
-.name-input
-  // Using flex-basis instead of max-width for IE11
-  // https://github.com/philipwalton/flexbugs#flexbug-17
-  flex: 1 0 30rem
+.row-input
+  flex: 1 0
   min-width: 0
+  @media (min-width $breakpoint-sm-min)
+    // Using flex-basis instead of max-width for IE11
+    // https://github.com/philipwalton/flexbugs#flexbug-17
+    flex: 0 0 30rem
 </style>
