@@ -30,7 +30,8 @@ module.exports = {
         timeUnit: 'm', // minute
         minDuration: { m: 1 }
       },
-      active: true
+      active: true,
+      isDefault: true
     },
     // Imagine we can create mission listings for heroes to pick some
     mission: {
@@ -98,7 +99,6 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
           longMissionDurationInHours,
           assetTypes: { // asset types available for asset creation
             'assetTypes::hero': {
-              isDefault: true,
               customAttributes: [ // attributes to set in editor
                 'speed',
                 'abilities',

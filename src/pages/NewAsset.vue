@@ -55,30 +55,25 @@ export default {
   },
   computed: {
     defaultAssetType () {
-      const assetTypesConfig = get(this.common.config, 'stelace.instant.assetTypes')
-      if (!assetTypesConfig) return this.assetTypes[0]
-
-      let defaultType
-
-      const assetTypesIds = Object.keys(assetTypesConfig)
-      assetTypesIds.forEach(assetTypeId => {
-        if (defaultType) return
-
-        const assetTypeConfig = assetTypesConfig[assetTypeId]
-        if (assetTypeConfig.isDefault) {
-          defaultType = this.assetTypes.find(assetType => assetType.id === assetTypeId)
-        }
-      })
-
-      if (defaultType) return defaultType
-      else return this.assetTypes[0]
+      return this.defaultActiveAssetType
     },
     selectedAssetType () {
-      if (!this.asset.asset.id) {
-        return this.assetTypes.find(assetType => assetType.id === this.defaultAssetType.id) || {}
-      } else {
-        return this.common.assetTypesById[this.asset.asset.assetTypeId] || {}
-      }
+      if (!this.asset.asset.id) return this.defaultAssetType || {}
+      else return this.common.assetTypesById[this.asset.asset.assetTypeId] || {}
+    },
+    priceLabel () {
+      const defaultPriceLabel = this.$t({ id: 'pricing.price_label' })
+      if (!this.selectedAssetType || !this.selectedAssetType.timeBased) return defaultPriceLabel
+
+      const timeUnit = get(this.selectedAssetType, 'timing.timeUnit')
+      return this.$t({ id: 'pricing.price_per_time_unit_label' }, { timeUnit })
+    },
+    categoryRequired () {
+      const categories = values(this.common.categoriesById)
+      return !!categories.length
+    },
+    showCategory () { // could depend on some env variable or config
+      return this.categoryRequired
     },
     editableCustomAttributeNames () {
       if (!this.selectedAssetType) return []
@@ -103,9 +98,6 @@ export default {
       const customAttributes = this.customAttributes // ensure Vue reactivity
       return groupBy(customAttributes, ca => ca.type)
     },
-    assetTypes () {
-      return values(this.common.assetTypesById)
-    },
     showAvailabilityDates () {
       if (!this.selectedAssetType) return false
 
@@ -128,7 +120,9 @@ export default {
       if (this.name.length >= 1) { // with high debounce to reduce distraction while typing
         steps[2] = true
       }
-      if (steps[2] && this.selectedCategory && this.selectedCategory.name && !isNaN(parseInt(this.price))) {
+
+      const validCategory = this.selectedCategory && this.selectedCategory.name
+      if (steps[2] && (!this.categoryRequired || validCategory) && !isNaN(parseInt(this.price))) {
         steps[3] = true
       }
 
@@ -152,9 +146,6 @@ export default {
       // Last valid step
       return steps.reduce((previous, step, i) => step ? i : previous, 1)
     },
-    reusableImages () {
-      return this.currentUser.id ? this.currentUser.images : []
-    },
     ...mapState([
       'asset',
       'common',
@@ -163,6 +154,7 @@ export default {
     ]),
     ...mapGetters([
       'currentUser',
+      'defaultActiveAssetType',
     ]),
   },
   async preFetch ({ store }) {
@@ -229,10 +221,11 @@ export default {
           // the logic will be triggered at the end of the upload from afterUploadCompleted
           if (uploadPending) return
 
-          const images = this.assetImages.map(img => {
-            delete img.reused
-            return img
-          })
+          const images = this.assetImages
+          /* .map(img => { // clean reused images
+              delete img.reused
+              return img
+            }) */
 
           let assetQuantity = this.quantity
 
@@ -267,7 +260,7 @@ export default {
 
           const attrs = {
             name,
-            assetTypeId: this.selectedAssetType.id,
+            assetTypeId: (this.selectedAssetType && this.selectedAssetType.id) || undefined, // `null` not allowed
             description: this.description,
             price: this.price,
             quantity: assetQuantity,
@@ -387,26 +380,27 @@ export default {
             v-if="step > 1"
             class="step-2 q-py-lg"
           >
-            <div class="row justify-between">
-              <div class="flex-item--grow-shrink-auto q-pr-lg">
+            <div class="row justify-around">
+              <div v-if="showCategory" class="flex-item--grow-shrink-auto q-pr-lg">
                 <SelectCategories
                   :initial-category="selectedCategory"
                   :autocomplete-min-chars="0"
                   :label="$t({ id: 'asset.category_label' })"
                   :show-search-icon="false"
                   :rules="[
-                    selectedCategory => !!selectedCategory ||
-                      $t({ id: 'form.error.missing_field' })
+                    selectedCategory => categoryRequired
+                      ? (!!selectedCategory || $t({ id: 'form.error.missing_field' }))
+                      : true
                   ]"
                   bottom-slots
                   @change="selectCategory"
                 />
               </div>
-              <div style="flex: 1 2 auto">
+              <div :style="showCategory ? 'flex: 1 2 auto;' : ''">
                 <QInput
                   v-model="price"
                   type="number"
-                  :label="$t({ id: 'pricing.price_label' })"
+                  :label="priceLabel"
                   :rules="[
                     price => Number.isFinite(parseFloat(price)) ||
                       $t({ id: 'form.error.missing_price' })
@@ -442,7 +436,7 @@ export default {
             v-if="step > 3"
             class="step-4 q-py-lg"
           >
-            <div class="row justify-between">
+            <div class="row justify-around">
               <div class="col-12 col-md-7">
                 <QInput
                   v-model="description"
@@ -458,9 +452,11 @@ export default {
                   required
                 />
               </div>
-              <div class="col-12 col-sm-6 col-md-5 q-pl-md">
+              <div
+                v-if="customAttributesByType['boolean']"
+                class="col-12 col-sm-6 col-md-5 q-pl-md"
+              >
                 <CustomAttributesEditor
-                  v-if="customAttributesByType['boolean']"
                   :definitions="customAttributesByType['boolean']"
                   :values="editingCustomAttributes"
                   @change="changeCustomAttributes"
@@ -500,7 +496,6 @@ export default {
                 field="new_asset.picture_incentive"
               />
               <AppGalleryUploader
-                :reused-images="reusableImages"
                 @uploader-files-changed="uploaderFilesChanged"
                 @upload-completed="uploadCompleted"
               />
