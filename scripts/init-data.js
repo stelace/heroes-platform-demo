@@ -7,6 +7,7 @@ const path = require('path')
 const fs = require('fs')
 const { execSync } = require('child_process')
 const chalk = require('chalk')
+const script = require('commander')
 const inquirer = require('inquirer')
 
 const log = console.log
@@ -14,6 +15,12 @@ const warn = (err, msg) => {
   if (msg) log(chalk.yellow(msg))
   if (err) log(err)
 }
+
+script.option('--live-demo',
+  'Use live demo version. NOT recommended since it can quickly exceed free-tier API usage.')
+script.parse(process.argv)
+const useDemoVersion = script.liveDemo
+
 const prompt = inquirer.createPromptModule()
 let answers
 
@@ -45,17 +52,11 @@ async function run () {
   answers = await prompt([
     {
       type: 'confirm',
-      name: 'dailyMissionsVersion',
-      message: 'Recommended: use free-tier friendly automated tasks',
-      default: true
-    },
-    {
-      type: 'confirm',
       name: 'confirmLiveDemoVersion',
       message: 'Warning: live demo version has recurring tasks running every minute for demo purpose only.\n' +
         'Using this version will likely exceed your Stelace Command free tier.\n' +
         'Are you sure you want to deploy demo version?',
-      when: answers => !answers.dailyMissionsVersion,
+      when: Boolean(useDemoVersion),
       default: false
     },
     {
@@ -87,12 +88,12 @@ async function run () {
     log('\nYou may want to remove old Categories and Asset Types manually.')
   }
 
-  if (!answers.dailyMissionsVersion && answers.confirmLiveDemoVersion) {
+  if (useDemoVersion && answers.confirmLiveDemoVersion) {
     warn(null, '\nUsing live demo version')
     log('Run this script again to remove recurring tasks and workflows.')
     log('Otherwise you will quickly exceed free tier.')
     process.env.LIVE_DEMO_VERSION = 'true'
-  } else if (!answers.dailyMissionsVersion && !answers.confirmLiveDemoVersion) {
+  } else if (useDemoVersion && !answers.confirmLiveDemoVersion) {
     log('\nUsing version with daily automated missions instead of live demo version.')
   }
 
