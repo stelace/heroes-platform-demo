@@ -130,10 +130,6 @@ export default {
       // due to multiple requests failing after session expiration
       const debouncedEmitUserSessionExpiredError = debounce(() => {
         this.notifyInfo('error.user_session_expired', { timeout: 10000 })
-        // TODO: remove these 2 lines once baked in SDK
-        const tokenStore = stelace.getTokenStore()
-        tokenStore.removeTokens()
-
         this.$store.dispatch('logout', { sessionExpired: true })
       }, 2000)
 

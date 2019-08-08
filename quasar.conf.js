@@ -307,6 +307,10 @@ module.exports = function (ctx) {
         }
       },
 
+      transpileDependencies: [
+        /sharp-aws-image-handler-client/
+      ],
+
       extendWebpack (cfg, { isClient }) {
         cfg.module.rules.push({
           enforce: 'pre',

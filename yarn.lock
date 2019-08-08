@@ -1164,10 +1164,10 @@
     babel-plugin-module-resolver "^3.2.0"
     babel-plugin-transform-imports "^1.5.1"
 
-"@quasar/extras@~1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.1.4.tgz#a51efa11b2dced4d4d99b1f0e0410254f2593852"
-  integrity sha512-W+BrplCY+UeEN4Lwy2GcQH5CR92CrqhD2YjlcoCSbCEkSna0A35Be3kJ23qqLUMh4iuyG3jLFI1y9nUENTZqTg==
+"@quasar/extras@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.2.0.tgz#46520c283aa82cc4bb65c7a7b6a6e048fb356335"
+  integrity sha512-DUo4KRayuwnMwzRK4vYjd6q6e6sGOkt5moD2Lz/q5PiPqvEjoNeQd9vcNPTqpSjWk7AUDVW4meDR2ThHyQMzAQ==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -1176,14 +1176,14 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sentry/browser@^5.4.0":
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.4.3.tgz#c9b56611c6b7de624962d2ea3fc0a9318f44a853"
-  integrity sha512-5fPlco0/65RpyNy9LMURrZhX1RT1+CAoR06yU65ZB81N3oRuAGDYE85Hs62t0T3EEGTKrMundINHcq8UD1V0xw==
+"@sentry/browser@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.6.0.tgz#bc7b5fd73da7df339bc866f365c1841620e314f7"
+  integrity sha512-Md/sGgDgWy4ZiA0f+ReVS4NMbd1dCpCaYRFVmZedn+c7FQzslAerlj+KRiFRtb7G41II/4NZX+9Pn9JfkPCshg==
   dependencies:
-    "@sentry/core" "5.4.3"
-    "@sentry/types" "5.4.2"
-    "@sentry/utils" "5.4.2"
+    "@sentry/core" "5.6.0"
+    "@sentry/types" "5.6.0"
+    "@sentry/utils" "5.6.0"
     tslib "^1.9.3"
 
 "@sentry/cli@^1.35.5":
@@ -1198,55 +1198,55 @@
     progress "2.0.0"
     proxy-from-env "^1.0.0"
 
-"@sentry/core@5.4.3":
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.4.3.tgz#c9e3a6cc9f5e296c5a5e19a7a925d9ee9125a95f"
-  integrity sha512-VjRv9BXip2BtCSohi/WQra+Ep4B8ajer1nU1VpKy5tUCjpVfXRpitY23EdEl+MVJH7h6YPZ45JsuFiKGgrtaFQ==
+"@sentry/core@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.6.0.tgz#87ffc1d3a222d4ef223da4a9520b910bea2b23bd"
+  integrity sha512-agyvCiiqfFsx+WMuipcf2fEEW1DxwQRKnYZr9Lj3zzPq4qT2/4XD4NTQpgNtkdGxTcRbcgIP06oU5x1+HM6zCw==
   dependencies:
-    "@sentry/hub" "5.4.3"
-    "@sentry/minimal" "5.4.3"
-    "@sentry/types" "5.4.2"
-    "@sentry/utils" "5.4.2"
+    "@sentry/hub" "5.6.0"
+    "@sentry/minimal" "5.6.0"
+    "@sentry/types" "5.6.0"
+    "@sentry/utils" "5.6.0"
     tslib "^1.9.3"
 
-"@sentry/hub@5.4.3":
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.4.3.tgz#d6936f976435dd552e06a6a3e9f8cd643e9b9b3f"
-  integrity sha512-97bnk2dDuCdFv2xhujogqPiDDpKOsHxBXH1jOJ5ezr3/uZNsMRr450FDxxJJYDLuSx+qZ/+vUFfdVNjprBsuSg==
+"@sentry/hub@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.6.0.tgz#a5f4a035e3d0faa16cc03052ab629c71c36e7487"
+  integrity sha512-tpgLXQ8UVwDFRSQjsli4o0xbK5pm4k3/UjCvUvyYkWqzcFPgR6bV6srwpZ45GD2+SNamIyXcHDlckB8AMXLG9g==
   dependencies:
-    "@sentry/types" "5.4.2"
-    "@sentry/utils" "5.4.2"
+    "@sentry/types" "5.6.0"
+    "@sentry/utils" "5.6.0"
     tslib "^1.9.3"
 
-"@sentry/integrations@^5.4.0":
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.4.2.tgz#75312407571392badc40ee48b031fae701fee564"
-  integrity sha512-+nPaFdj8v2EBkZsQBF/pOIwqcf32//R3Iz37aMAWuutw0YOgJXJEaPe4GNMpk78bH3ZwVltGlW8RsDD6zgcc7A==
+"@sentry/integrations@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.6.0.tgz#1654f5f4b1741599d2917e2da67ccce243559875"
+  integrity sha512-uZg2cNuE+ta+iZV3lvpNzgdJvmokQG84mCiFXdcymUzlfLxPiZGvwkTzqOl36BJQUoDO1ggOm6JiLjAXavW7Ww==
   dependencies:
-    "@sentry/types" "5.4.2"
-    "@sentry/utils" "5.4.2"
+    "@sentry/types" "5.6.0"
+    "@sentry/utils" "5.6.0"
     tslib "^1.9.3"
 
-"@sentry/minimal@5.4.3":
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-5.4.3.tgz#afaa8f7a3b5074efa8d70a2edac920b2e0cdbe15"
-  integrity sha512-xSCcKDtVtlmJIGmnlNH2fL++4l7iORJ+pOOfTz1Yjm/Il7Tz9wLVodbEfplXmAbOvgG/x9oilbW0MBSnrwKPfQ==
+"@sentry/minimal@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-5.6.0.tgz#4b7c55396da89d5da063ebf6fb476b2dd140b716"
+  integrity sha512-EGOlcma+puOGxRjLpt/hfLJBP7MfzIoxYs16Z7wn30lIHgru7kMPU8HZQfCove6Bylb3ReD0AS1aMY4n3Hit3A==
   dependencies:
-    "@sentry/hub" "5.4.3"
-    "@sentry/types" "5.4.2"
+    "@sentry/hub" "5.6.0"
+    "@sentry/types" "5.6.0"
     tslib "^1.9.3"
 
-"@sentry/types@5.4.2":
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.4.2.tgz#4ab327bced2cfd961dc7a29f0ff43398f913f6a6"
-  integrity sha512-yh1fd7x5lLOIZ8W3A1I792B3jowJVCWp4HcTRikjTsjbF8lcURY62m+hiLYUFPTIX99AlFRIPiApDkWiwMGYMA==
+"@sentry/types@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.6.0.tgz#e5ababaf5eb237ff33df6e8df78dddbad2b0c2f5"
+  integrity sha512-+My+TcJYrqDzxxjnwZls6tQHqIfMUs3qNxxkI+yXdRlNuBv4kN/a3KAj2rrHX46wDM0UixnzsUZgbFSmy1V4nA==
 
-"@sentry/utils@5.4.2":
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.4.2.tgz#c88c6c08d635e1744a443cfefe9e2ed7fa250e4e"
-  integrity sha512-AW7/TGt2HiPQB8lJ8NgMgaFAIDQpKDF+wV8nENRbC1CP1zzcvb1QBF4zBL2auDT4fhkhVa817064s7vlDiJVLQ==
+"@sentry/utils@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.6.0.tgz#995c38b0715f01485b1525f9b5f88d324a321302"
+  integrity sha512-nkFjBCvh69+UnKqxT4nB/AtFNF9FGgkGy3+eoFN1xNDGKLkn2dobYlNI5m3JotNSXWwJmTaEO1a9TOaueKuG8g==
   dependencies:
-    "@sentry/types" "5.4.2"
+    "@sentry/types" "5.6.0"
     tslib "^1.9.3"
 
 "@sentry/webpack-plugin@^1.6.2":
@@ -5592,6 +5592,11 @@ lodash@^4.17.12:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
   integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
 log-symbols@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
@@ -7334,10 +7339,10 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-quasar@~1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.0.4.tgz#b5e5aa2aa113a797729ed85728e88a4ebc5f1e0b"
-  integrity sha512-/9ZOGOl29jy1jNG/IUjwM57y0XKamgc0N/440QBSfHSHnnusGSaIkdtCZ363EUUXvELIO7tHi/yiln0q7P2X1g==
+quasar@~1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.0.5.tgz#caddfac55fca0779c996dc1b3977a045ae1426e6"
+  integrity sha512-8CxBZk5Ge+jUC7nzlzrLwlZRedpBkcYjkmyBOA0QJLvCXE8K8Ro68R7Vxf7+Baplo11aBMhFX1FhHZWrSM7Y2A==
 
 query-string@^4.1.0:
   version "4.3.4"
@@ -7924,9 +7929,9 @@ sharkdown@^0.1.0:
     minimist "0.0.5"
     split "~0.2.10"
 
-"sharp-aws-image-handler-client@https://github.com/stelace/sharp-aws-image-handler-client.git#0.1.0":
-  version "0.1.0"
-  resolved "https://github.com/stelace/sharp-aws-image-handler-client.git#5ea36e5a7250d92f2569d206ce9ef8f0a925aca4"
+"sharp-aws-image-handler-client@https://github.com/stelace/sharp-aws-image-handler-client.git#0.2.0":
+  version "0.2.0"
+  resolved "https://github.com/stelace/sharp-aws-image-handler-client.git#27908f97a28b59144edbbb6a683257f0bdfe7fbc"
 
 shebang-command@^1.2.0:
   version "1.2.0"
@@ -8228,10 +8233,10 @@ static-extend@^0.1.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
-stelace@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/stelace/-/stelace-0.7.0.tgz#73b9c70b6cf2f9ac066c2b98e68381789b139f2b"
-  integrity sha512-5rcUkNonNC9XTFnYjSzQnEMdc3ntxaiMf/hzkZBTVt8ejgaj3iVF/3kJlGDA9pjBTzdnhlcaaMqr+0QhSFUmVQ==
+stelace@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/stelace/-/stelace-0.8.0.tgz#963cec1e80351caca2261b2767b0ed5045f02477"
+  integrity sha512-Db54FJ/MyHKOteBEdVwB5B+phBAi1tn+J0TKi5qRBzf5YpDgz1UjAbJpiiBYu/xFiKCNFDv81uCI58C0RtbNrA==
   dependencies:
     axios "^0.19.0"
     core-js "3"
