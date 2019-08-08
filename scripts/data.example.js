@@ -102,7 +102,9 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
               customAttributes: [ // attributes to set in editor
                 'speed',
                 'abilities',
-                'gender'
+                'gender',
+                'stelaceStaffPick',
+                'environmentHero'
               ]
             }
           },

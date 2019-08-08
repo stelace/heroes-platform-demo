@@ -26,7 +26,10 @@ export default {
       this.name = name || this.name
       this.isFirstTime = !this.demo.dialogsOpened[this.name]
 
-      if (!this.isFirstTime) return
+      if (!this.isFirstTime) {
+        if (typeof cb === 'function') cb()
+        return
+      }
 
       this.$store.commit({
         type: 'DEMO_DIALOG_OPENED',
