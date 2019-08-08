@@ -45,13 +45,15 @@
 # For "Netlify deploy" template button
 [template.environment]
   STELACE_PUBLISHABLE_API_KEY = "* Stelace publishable API key (pubk_test_…)"
-  VUE_APP_MAPBOX_STYLE = "* Map provider style URL (we suggest Maptiler)"
   # Style used in demo https://api.maptiler.com/maps/STYLE_ID/style.json?key=YOUR_KEY
-  VUE_APP_MAPBOX_TOKEN = "Map token: not needed if included in style URL"
-  VUE_APP_SERVICE_NAME = "Service name: injected in various contents"
-  VUE_APP_DEFAULT_LANGUAGE = "Language: currently en (default) or fr"
-  VUE_APP_DEFAULT_CURRENCY = "Currency: ISO code like USD (default) or EUR"
+  VUE_APP_MAPBOX_STYLE = "* Map provider style URL (we suggest Maptiler)"
+  # Map provider token not needed if included in style URL
+  # VUE_APP_MAPBOX_TOKEN = "Map token: not needed if included in style URL
+  VUE_APP_SERVICE_NAME = "Platform name: injected in various contents"
   VUE_APP_GOOGLE_ANALYTICS_ID = "Google Analytics ID: UA-XXXXXXXX-1"
+  # These variables or any other ones can be set in Netlify UI later on
+  # VUE_APP_DEFAULT_LANGUAGE = "Language: currently en (default) or fr"
+  # VUE_APP_DEFAULT_CURRENCY = "Currency: ISO code like USD (default) or EUR"
 
 
 # Continuous deployment
