@@ -470,7 +470,7 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
           endpointPayload: {
             recurringPattern: `"${ // Mind the quotes
               dailyMissions
-                ? `* ${new Date().getUTCHours + 1} * * *` // at next rounded hour, on every day
+                ? `* ${new Date().getUTCHours() + 1} * * *` // at next rounded hour, on every day
                 : '* * * * *' // every minute
             }"`,
             eventType: '"assign_mission"',
