@@ -480,28 +480,6 @@ One thousand years have passed since the Seven Days of Fire, an apocalyptic war 
       ]
     },
 
-    removeMissionRefreshTask: {
-      name: 'removeMissionRefreshTask',
-      description: 'Removes Task assigning new missions to current hero (after hero removal)',
-      event: 'asset__deleted',
-      run: [
-        {
-          name: 'missionRefreshTasks',
-          endpointMethod: 'GET',
-          endpointUri: '/tasks?eventType=assign_mission&eventObjectId=${asset.id}',
-        },
-        {
-          name: 'clearMissionRefresh',
-          computed: {
-            task: 'responses.missionRefreshTasks.results[0]'
-          },
-          stop: `!computed.task`,
-          endpointMethod: 'DELETE',
-          endpointUri: '/tasks/${computed.task.id}'
-        }
-      ]
-    },
-
     assignRandomMissionToHero: {
       name: 'assignRandomMissionToHero',
       description: 'Randomly assign a mission to idle hero and update their location.',
