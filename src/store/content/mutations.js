@@ -6,8 +6,8 @@ export default {
     state.localEntries = entries
   },
 
-  [types.SET_API_ENTRIES] (state, { entries }) {
-    state.apiEntries = keyBy(entries, 'id')
+  [types.SET_API_ENTRIES] (state, { entries, entriesByName }) {
+    state.apiEntries = entriesByName || keyBy(entries, 'name')
   },
 
   [types.SET_LOCALE] (state, { locale }) {
@@ -31,5 +31,9 @@ export default {
 
   [types.SET_ACCEPT_WEBP] (state, { accept = true } = {}) {
     state.acceptWebP = accept
+  },
+
+  [types.SET_CONTENT_UPDATED_DATE] (state) {
+    state.lastContentUpdatedDate = new Date().toISOString()
   },
 }
