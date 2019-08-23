@@ -5,30 +5,36 @@
 # Stelace API Starter Kit
 
 > This Stelace starter kit is free to use, under the terms of the [MIT license](./LICENSE).
-Feel free to fork, contribute or just make it your own :heart:.
+Feel free to [fork](
+  https://app.netlify.com/start/deploy?repository=https://github.com/stelace/heroes-platform-demo
+), contribute or just make it your own :heart:.
 
 ---
 
-This starter kit leverages Stelace API to run a platform full of super heroes operating in NYC. __[Live Demo](https://heroes.demo.stelace.com/s)__
+This __Web Platform starter kit with pre-configured serverless deployment__ leverages Stelace Search and Automation APIs to run a real-time platform full of super heroes operating in NYC.
 
-[![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
-
+- __[Live Demo](https://heroes.demo.stelace.com/s)__
 - [Stelace docs quick start](https://stelace.com/docs/getting-started)
 - [Blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/)
 - [More details](./HEROES.md) on how this works
 
+[![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
+
 Free your mind and imagine how many cool things you could build on your own with Stelace API…
 From online marketplaces to real-time platforms.
 
+A more classical [marketplace starter kit](https://github.com/stelace/marketplace-demo) is also available with additional marketplace features such as Ratings, real-time Messaging, Asset pages and Transactions.
+
 **What is Stelace?**
 
-[Stelace](https://stelace.com/) provides search, automation and marketplace infrastructure for Web platforms, ranging from search-intensive apps to online communities. Stelace offers powerful backend that lets you focus on what makes your platform unique.
+[Stelace](https://stelace.com/) provides search, inventory and user management infrastructure and APIs for Web platforms, ranging from search-intensive marketplaces to online community apps.
+
+Stelace offers powerful backend and APIs including advanced search, automation, and content delivery, to let you focus on what makes your platform unique.
 
 [API Docs](https://stelace.com/docs)
 
-A more complex [marketplace starter kit](https://github.com/stelace/jobs-marketplace-template) is also available with additional marketplace features such as Ratings, gated access, Organizations or real-time messaging.
-
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![Netlify Status](https://api.netlify.com/api/v1/badges/6532f66b-bef6-40cd-963b-81f1481e3a69/deploy-status)](https://app.netlify.com/sites/stelace-heroes-platform-demo/deploys)
+
 ---
 
 ## Features
@@ -55,10 +61,15 @@ Leverage these integrations to start running your platform even faster:
 
 ## Stack
 
-- [Vue.js](https://github.com/vuejs/vue) and [Quasar](https://github.com/quasarframework/quasar)
-- [Stelace Backend](https://stelace.com)
+Serverless [JAMStack architecture](https://jamstack.org/):
+
+- [Vue.js](https://github.com/vuejs/vue)
+- [Quasar](https://github.com/quasarframework/quasar) framework
+- [Stelace API](https://stelace.com) as backend
+- [Stelace headless CMS](https://stelace.com/docs/content)
 - [Stelace.js](https://github.com/stelace/stelace.js) SDK
-- Node.js >= 8.9 for tooling
+
+Node.js >= 8.9 is used for tooling.
 
 ## Make it your own
 
@@ -99,6 +110,8 @@ You need to fill the following environment variables:
 ) and get a [map style URL](
   https://cloud.maptiler.com/maps/upload
 ): `https://api.maptiler.com/maps/YOUR_MAP_STYLE_ID/style.json?key=MAPTILER_KEY`.
+
+You can get your API Keys in [Stelace Dashboard](https://stelace.com/dashboard).
 
 4. Seed [data](./docs/development-data.md) and [workflows](https://stelace.com/docs/command/worflows).
 
