@@ -141,7 +141,7 @@ export default {
 
       let maxPrice
       if (maximumPrice === '') {
-        maxPrice = this.search.priceDefaultMax
+        maxPrice = this.search.priceDefault.max
         this.priceInputTouched = false
       } else {
         maxPrice = maximumPrice
@@ -159,7 +159,7 @@ export default {
 
       this.$store.commit(mutationTypes.SET_PRICE_RANGE, {
         min: this.search.priceRange.min,
-        max: this.search.priceDefaultMax
+        max: null
       })
 
       this.searchAssets()

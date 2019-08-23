@@ -40,9 +40,14 @@ export default {
     state.latitude = null
     state.longitude = null
   },
-  [types.SET_PRICE_RANGE] (state, { min, max }) {
-    state.priceRange.min = min
-    state.priceRange.max = max
+  [types.SET_PRICE_RANGE] (state, { min, max, defaults = false }) {
+    if (defaults) {
+      state.priceDefault.min = min
+      state.priceDefault.max = max
+    } else {
+      state.priceRange.min = min
+      state.priceRange.max = max
+    }
   },
   [types.SET_DISPLAY_PRICE_RANGE] (state, { min, max }) {
     state.displayPriceRange.min = min

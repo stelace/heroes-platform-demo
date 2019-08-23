@@ -107,6 +107,7 @@ export default {
   // Same event is also generated every minute by Stelace reccurent Task
   // In a tracking app, each asset could also generate its own custom Events (e.g. position update)
   async mounted () {
+    this.$store.dispatch('getHighestPrice')
     await new Promise(resolve => setTimeout(resolve, 2000))
     pMap(this.searchedAssets.filter(this.endedMission), async asset => {
       await this.$store.dispatch('sendCustomEvent', {

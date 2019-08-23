@@ -1,7 +1,9 @@
 import stelace from 'src/utils/stelace'
 import * as types from 'src/store/mutation-types'
-import { values } from 'lodash'
+import { get, isEmpty, values } from 'lodash'
+
 import { populateAsset } from 'src/utils/asset'
+import { roundUpPower10 } from 'src/utils/number'
 
 export async function initEditAssetPage ({ state, commit, dispatch }, { assetId } = {}) {
   const [
@@ -55,6 +57,29 @@ export async function fetchUserAssets ({ commit, dispatch, rootState, rootGetter
       assetTypesById
     })
   })
+}
+
+export async function getHighestPrice ({ rootState, commit }, { setPriceRange = true } = {}) {
+  const assetTypeIds = rootState.search.assetTypesIds
+  const params = {
+    nbResultsPerPage: 1,
+    orderBy: 'price',
+    order: 'desc'
+  }
+  if (!isEmpty(assetTypeIds)) params.assetTypeId = assetTypeIds
+
+  const assets = await stelace.assets.list(params)
+  const max = get(assets, '[0].price')
+
+  if (Number.isFinite(max) && setPriceRange) {
+    commit({
+      type: types.SET_PRICE_RANGE,
+      min: rootState.search.priceRange.min,
+      max: roundUpPower10(max),
+      defaults: true
+    })
+  }
+  return max
 }
 
 export async function createAsset ({ commit }, { attrs }) {
