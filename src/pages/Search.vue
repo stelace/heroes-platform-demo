@@ -7,10 +7,10 @@ import * as mutationTypes from 'src/store/mutation-types'
 
 import bezierEasing from 'bezier-easing'
 import { debounce, get, keys, set } from 'lodash'
-import pMap from 'p-map'
 import { event as gaEvent } from 'vue-analytics'
 
 import EventBus from 'src/utils/event-bus'
+import p from 'src/utils/promise'
 
 import AppMiniLogo from 'src/components/AppMiniLogo'
 import AssetCard from 'src/components/AssetCard'
@@ -109,7 +109,7 @@ export default {
   async mounted () {
     this.$store.dispatch('getHighestPrice')
     await new Promise(resolve => setTimeout(resolve, 2000))
-    pMap(this.searchedAssets.filter(this.endedMission), async asset => {
+    p.map(this.searchedAssets.filter(this.endedMission), async asset => {
       await this.$store.dispatch('sendCustomEvent', {
         type: 'assign_mission',
         objectId: asset.id
@@ -254,7 +254,7 @@ export default {
       }) */
 
       // add new markers to map
-      pMap(mapFeatures, async f => {
+      p.map(mapFeatures, async f => {
         const assetId = f.properties.assetId
         const asset = this.searchedAssets.find(a => a.id === assetId)
         const markerId = `marker-${assetId}`
@@ -374,7 +374,7 @@ export default {
           })
         }
         requestAnimationFrame(animateHero)
-      }, { concurrency: 2 }) // pMap
+      }, { concurrency: 2 }) // p.map
     },
     destroyMarkers ({ keep } = {}) {
       // Don’t keep all markers in memory when results change
