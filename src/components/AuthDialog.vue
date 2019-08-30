@@ -310,6 +310,42 @@
           {{ $t({ id: 'authentication.lost_password_button' }) }}
         </q-btn>
 
+        <div
+          v-if="type === 'login' && SSOProviders.length"
+          class="text-center"
+        >
+          <div class="q-my-md">
+            <AppContent entry="prompt" field="binary_or_separator" />
+          </div>
+
+          <QBtn
+            v-if="SSOProviders.includes('github')"
+            no-caps
+            text-color="primary"
+            @click="ssoLogin('github')"
+          >
+            <AppContent
+              entry="authentication"
+              field="log_in_with_provider"
+              :options="{ provider: 'Github' }"
+            />
+          </QBtn>
+
+          <QBtn
+            v-for="provider in customSSOProviders"
+            :key="provider"
+            no-caps
+            color="primary"
+            @click="ssoLogin(provider)"
+          >
+            <AppContent
+              entry="authentication"
+              field="log_in_with_provider"
+              :options="{ provider: upperFirst(provider) }"
+            />
+          </QBtn>
+        </div>
+
         <q-separator
           v-if="showAuthenticationForm"
           class="q-my-md"
@@ -364,10 +400,12 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import { upperFirst } from 'lodash'
 import * as mutationTypes from 'src/store/mutation-types'
 
 import EventBus from 'src/utils/event-bus'
 import { getInstantRoutePath } from 'src/router/routes'
+import { getSSOLoginUrl } from 'src/utils/auth'
 
 const passwordMinLength = 8
 
@@ -416,6 +454,14 @@ export default {
     },
     isPersistent () {
       return !!(this.auth.authDialogPersistent || this.redirectUrl)
+    },
+    SSOProviders () {
+      if (!process.env.VUE_APP_SSO_PROVIDERS) return []
+      return process.env.VUE_APP_SSO_PROVIDERS.split(',').map(p => p.trim())
+    },
+    customSSOProviders () {
+      const builtInProviders = ['github']
+      return this.SSOProviders.filter(p => !builtInProviders.includes(p))
     },
     showAuthenticationForm () {
       return ['signup', 'login'].includes(this.type)
@@ -632,6 +678,13 @@ export default {
     },
     shake () {
       this.$refs.authDialog.shake()
+    },
+    ssoLogin (provider) {
+      const loginUrl = getSSOLoginUrl(provider)
+      window.location.href = loginUrl
+    },
+    upperFirst (str) {
+      return upperFirst(str)
     }
   }
 }

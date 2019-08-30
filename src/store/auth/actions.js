@@ -101,3 +101,12 @@ export async function changePassword ({ commit }, { currentPassword, newPassword
     newPassword
   })
 }
+
+export async function getAuthTokens ({ dispatch }, { code }) {
+  await stelace.auth.getTokens({
+    grantType: 'authorizationCode',
+    code
+  })
+
+  await dispatch('fetchCurrentUser')
+}

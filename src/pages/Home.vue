@@ -59,7 +59,7 @@ export default {
         'reset-password': resetPasswordToken,
         check,
         status,
-        subscription_result: subscriptionResult
+        code
       } = this.$route.query
 
       if (resetPasswordToken) {
@@ -84,24 +84,24 @@ export default {
         }
 
         // replace the URL so the message won't display at each page refresh
-        const newQuery = Object.assign({}, this.$route.query)
-        delete newQuery.check
-        delete newQuery.status
-        delete newQuery.token
-        this.$router.replace({ query: newQuery })
+        this.removeQueryParams(['check', 'status', 'token'])
+      } else if (code) {
+        if (status === 'success') {
+          this.$store.dispatch('getAuthTokens', { code })
+          // replace the URL so getting auth tokens won't happen at each page refresh
+          this.removeQueryParams(['status', 'code'])
+          this.notifySuccess('authentication.log_in_success')
+        } else {
+          this.notifyWarning('error.unknown_happened_header')
+        }
       }
-
-      if (subscriptionResult) {
-        this.openCheckoutResultDialog(subscriptionResult, {
-          onClose: () => {
-            // replace the URL so the message won't display at each page refresh
-            const newQuery = Object.assign({}, this.$route.query)
-            delete newQuery.subscription_result
-            delete newQuery.plan
-            this.$router.replace({ query: newQuery })
-          }
-        })
-      }
+    },
+    removeQueryParams (queryParams) {
+      const newQuery = Object.assign({}, this.$route.query)
+      queryParams.forEach(param => {
+        delete newQuery[param]
+      })
+      this.$router.replace({ query: newQuery })
     },
     selectPlace (place) {
       if (place) {
