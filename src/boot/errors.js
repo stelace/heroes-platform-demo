@@ -24,7 +24,7 @@ export default async ({ Vue }) => {
     EventBus.$emit('error')
 
     // Restore default behavior Vue.util: https://github.com/vuejs/vue/issues/8433
-    // if (info) Vue.util.warn(`Error in ${info}: "${err.toString()}"`, vm)
+    if (info) Vue.util.warn(`Error in ${info}`, vm)
     if (process.env.DEV) console.error(err) // eslint-disable-line
 
     handleChunkError(err)
@@ -60,9 +60,8 @@ export default async ({ Vue }) => {
     remoteLogger.capture = err => {
       if (err.message && err.message.toLowerCase().includes('user session expired')) return
 
-      const { name, message } = err
       Sentry.captureException(err)
-      handleChunkError({ name, message })
+      handleChunkError(err)
     }
     remoteLogger.message = msg => Sentry.captureMessage(msg)
   }
@@ -75,9 +74,9 @@ export function getRemoteLogger () {
 }
 
 function handleChunkError (err) {
-  // Reload app and ignore cache to fix broken chunks after app update
-  // Stelace Signal helps to make it smoother for connected clients
-  // But some users can come back later and have missed "appUpdate" signal
+  // Reload app and ignore cache to fix broken chunks after app update.
+  // Stelace Signal helps to make it smoother for connected clients,
+  // but some users can come back later and have missed "appUpdate" signal.
   const isChunkError = err.message && (
     /Loading( CSS)? chunk .+ failed/i.test(err.message) ||
     // SPA index.html may be served instead of missing chunk
@@ -85,9 +84,11 @@ function handleChunkError (err) {
     /expect.+</i.test(err.message)
   )
 
-  if (remoteLogger.message) {
-    // DEBUGGING for now
-    remoteLogger.message(`ChunkError: ${err.message}`)
+  // Much more likely to be handled by index.(template.)html
+  // since Webpack chunk errors happen before app boot
+  // We use the following message to track any exception in Sentry
+  if (remoteLogger.message && isChunkError) {
+    remoteLogger.message(`chunkError: ${err.message}`)
   }
 
   if (isChunkError && window.location.hash !== '#reload') {
