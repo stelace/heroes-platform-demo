@@ -60,7 +60,7 @@
 
 [context.production]
   # Production-specific X-Robots-Tag header
-  command = "sed -i 's/noindex, nofollow/all/g' netlify.toml && yarn build"
+  command = "sed -i 's|noindex, nofollow|all|g' netlify.toml && yarn build"
 
   [context.production.environment]
     VUE_APP_SERVICE_NAME = "Stelace Heroes Demo"
