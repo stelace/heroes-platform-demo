@@ -17,14 +17,14 @@ Injected into App’s style store, enabling configurable theme.
   // https://google-webfonts-helper.herokuapp.com/fonts/fira-sans?subsets=latin
   // JSON file: https://google-webfonts-helper.herokuapp.com/api/fonts/fira-sans?subsets=latin
   // and copy-paste file URLs after choosing appropriate charset (latin, latin-extended, cyrillic…)
-  "userFontNormal": "https://fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jL.woff2", // 400
-  "userFontMedium": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2", // 500
-  "userFontBold": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf6.woff2", // 700
+  "userFontNormal": "//fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jL.woff2", // 400
+  "userFontMedium": "//fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2", // 500
+  "userFontBold": "//fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf6.woff2", // 700
   "userFontDisplay": "fallback", // https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
   "userFontLegacyFormat": "woff", // can also be 'truetype' for .ttf, or 'svg
-  "userFontNormalLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jN.woff",
-  "userFontMediumLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf8.woff",
-  "userFontBoldLegacy": "https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf8.woff",
+  "userFontNormalLegacy": "//fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5Vvl4jN.woff",
+  "userFontMediumLegacy": "//fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnZKveRhf8.woff",
+  "userFontBoldLegacy": "//fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eRhf8.woff",
 
   "roundedTheme": false,
   "pageTransitions": true,
