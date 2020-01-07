@@ -262,7 +262,7 @@ export default {
 
         if (!imgSrc) return
 
-        let el = document.createElement('div')
+        const el = document.createElement('div')
         el.id = markerId
         el.className = 'stl-map-marker'
         el.style.backgroundImage = `url('${imgSrc}')`
@@ -329,8 +329,8 @@ export default {
           (c, i) => c !== f.geometry.coordinates[i]
         )
 
-        let previousCoordinates = coordinates
-        let intermediateCoordinates = coordinates.slice(0)
+        const previousCoordinates = coordinates
+        const intermediateCoordinates = coordinates.slice(0)
         if (coordinatesChanged) {
           this.assetCoordinates[assetId] = f.geometry.coordinates // new coordinates
         }

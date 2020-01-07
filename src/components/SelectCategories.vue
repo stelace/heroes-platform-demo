@@ -123,7 +123,7 @@ export default {
       return this.$refs.select.optionIndex
     },
     categories () {
-      let categoriesById = this.common.categoriesById
+      const categoriesById = this.common.categoriesById
       return values(categoriesById)
     },
     ...mapState([

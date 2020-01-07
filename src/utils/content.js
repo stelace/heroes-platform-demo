@@ -18,8 +18,8 @@ export const TRANSFORMED_KEYS = 'TRANSFORMED_KEYS'
  * @returns entries object
  */
 export function mergeLocalAndAPIEntries ({ apiEntries, localEntries }) {
-  let allEntries = { [TRANSFORMED_KEYS]: {} }
-  let allEntryNames = union(Object.keys(localEntries), Object.keys(apiEntries))
+  const allEntries = { [TRANSFORMED_KEYS]: {} }
+  const allEntryNames = union(Object.keys(localEntries), Object.keys(apiEntries))
     .filter(k => k !== TRANSFORMED_KEYS)
 
   allEntryNames.forEach(name => {
@@ -37,7 +37,7 @@ export function mergeLocalAndAPIEntries ({ apiEntries, localEntries }) {
 
   // Mapping transformed values like HTML rendered from markdown
   Object.keys(allEntries).filter(k => k !== TRANSFORMED_KEYS).forEach(key => {
-    let value = allEntries[key]
+    const value = allEntries[key]
 
     if (value === null) return
 

@@ -35,7 +35,7 @@ export async function fetchUserAssets ({ commit, dispatch, rootState, rootGetter
     assetTypesById,
   } = rootState.common
 
-  const ownerId = userId || (rootGetters.currentUser || {})['id']
+  const ownerId = userId || (rootGetters.currentUser || {}).id
 
   if (!ownerId) return []
 
