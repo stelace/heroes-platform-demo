@@ -74,7 +74,7 @@ module.exports = function (ctx) {
 
   const fonts = ['userFontNormal', 'userFontMedium', 'userFontBold']
   const woff2Ext = '.woff2'
-  let googleFonts = []
+  const googleFonts = []
 
   fonts.forEach(f => {
     const fontUrl = defaultStyles[f]
@@ -135,10 +135,10 @@ module.exports = function (ctx) {
       // 'eva-icons'
     ],
 
-    /* vendor: { // Exclude or add these to vendor chunk
+    vendor: { // Exclude or add these to vendor chunk
       add: [],
-      remove: ['axios']
-    }, */
+      remove: ['mapbox']
+    },
 
     // framework: 'all', // --- includes everything; for dev only!
     framework: {
@@ -341,7 +341,6 @@ module.exports = function (ctx) {
           chain.plugins.delete('preload')
           chain.plugins.delete('prefetch')
 
-          const quasarI18nRegex = new RegExp(`i18n-q-${defaultLanguage}`)
           const stelaceI18nRegex = new RegExp(`i18n-stl-${defaultLanguage}`)
           const iconFontRegex = /\.woff2(\?.*)?$/
           const appFontsRegex = /app-fonts/
@@ -358,7 +357,6 @@ module.exports = function (ctx) {
                 /i18n-q-/,
                 /i18n-q-lang/,
                 // Ensures we don’t prefetch AND preload
-                quasarI18nRegex,
                 stelaceI18nRegex,
                 iconFontRegex,
                 appFontsRegex,
@@ -387,7 +385,6 @@ module.exports = function (ctx) {
             .use(PreloadPlugin, [{
               rel: 'preload',
               fileWhitelist: [
-                quasarI18nRegex,
                 stelaceI18nRegex
               ],
             }])
@@ -410,7 +407,7 @@ module.exports = function (ctx) {
 
           // chain.optimization is a "ChainedMap"
           // https://github.com/neutrinojs/webpack-chain/issues/166
-          let split = chain.optimization.get('splitChunks')
+          const split = chain.optimization.get('splitChunks')
           Object.assign(split.cacheGroups, {
             app: {
               // cf. https://webpack.js.org/plugins/split-chunks-plugin
@@ -422,15 +419,6 @@ module.exports = function (ctx) {
               priority: -15, // "default" cacheGroup: -20
               reuseExistingChunk: true,
               automaticNameDelimiter: '~' // just making default explicit
-            },
-            qlang: {
-              // Merge all Quasar translations except for default
-              name: 'i18n-q-lang',
-              chunks: 'all',
-              test: new RegExp(`i18n-q-(?!${defaultLanguage})`),
-              minChunks: 1,
-              priority: -14,
-              reuseExistingChunk: true
             }
           })
 
@@ -494,14 +482,14 @@ module.exports = function (ctx) {
         theme_color: '#005298',
         icons: [
           {
-            'src': '/android-chrome-192x192.png',
-            'sizes': '192x192',
-            'type': 'image/png'
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
           },
           {
-            'src': '/android-chrome-512x512.png',
-            'sizes': '512x512',
-            'type': 'image/png'
+            src: '/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           }
         ]
       }
