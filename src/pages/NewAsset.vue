@@ -397,9 +397,8 @@ export default {
                 />
               </div>
               <div :style="showCategory ? 'flex: 1 2 auto;' : ''">
-                <QInput
+                <AppInputNumber
                   v-model="price"
-                  type="number"
                   :label="priceLabel"
                   :rules="[
                     price => Number.isFinite(parseFloat(price)) ||

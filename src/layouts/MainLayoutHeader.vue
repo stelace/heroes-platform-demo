@@ -254,12 +254,11 @@ export default {
           @change="selectCategory"
         />
 
-        <QInput
+        <AppInputNumber
           :value="maximumPrice"
           :label="$t({ id: 'form.search.maximum_price' })"
           class="gt-md"
           input-class="text-right"
-          type="number"
           min="0"
           dense
           @input="updateMaxPrice"
@@ -277,7 +276,7 @@ export default {
               @click="resetMaxPrice"
             />
           </template>
-        </QInput>
+        </AppInputNumber>
       </div>
 
       <QSpace />
