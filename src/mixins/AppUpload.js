@@ -157,7 +157,8 @@ export default {
         tr.push(Object.assign({},
           {
             name: f.name,
-            url: f.remoteUrl
+            url: f.remoteUrl,
+            key: `${f.name}-${f.remoteUrl || f.__img.src}`
           },
           fn(f)
         ))

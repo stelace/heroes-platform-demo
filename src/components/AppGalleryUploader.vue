@@ -115,7 +115,7 @@ export default {
           <!-- Ensure we have non empty files with filter -->
           <SlickItem
             v-for="(file, index) in uploaderTransformedFiles.filter(u => u && u.name && u.url)"
-            :key="`${file.name}-${file.url}`"
+            :key="file.key"
             :index="index"
             class="row justify-center q-pa-sm"
             :disabled="uploaderTransformedFiles.length === 1"
