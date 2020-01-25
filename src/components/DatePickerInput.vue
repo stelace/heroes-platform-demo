@@ -13,7 +13,7 @@
         :aria-label="$t({ id: 'form.date_placeholder' })"
         :color="iconColor"
         :disabled="$attrs.disabled"
-        icon="event"
+        :icon="icons.matEvent"
         rounded
         dense
         flat
@@ -34,7 +34,7 @@
         :aria-label="$t({ id: 'form.date_placeholder' })"
         :color="iconColor"
         :disabled="$attrs.disabled"
-        icon="event"
+        :icon="icons.matEvent"
         rounded
         dense
         flat
@@ -51,7 +51,7 @@
       <QBtn
         v-show="date"
         :aria-label="$t({ id: 'prompt.reset_button' })"
-        icon="close"
+        :icon="icons.matClose"
         rounded
         dense
         flat
@@ -63,6 +63,7 @@
 
 <script>
 import { date } from 'quasar'
+import { matClose, matEvent } from '@quasar/extras/material-icons'
 
 export default {
   props: {
@@ -92,6 +93,12 @@ export default {
     datePickerDate () {
       if (!this.date) return null
       return date.formatDate(this.date, 'YYYY/MM/DD')
+    }
+  },
+  created () {
+    this.icons = {
+      matClose,
+      matEvent,
     }
   },
   methods: {

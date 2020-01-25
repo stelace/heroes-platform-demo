@@ -8,6 +8,7 @@ import * as mutationTypes from 'src/store/mutation-types'
 import bezierEasing from 'bezier-easing'
 import { debounce, get, keys, set } from 'lodash'
 import { event as gaEvent } from 'vue-analytics'
+import { matFlag } from '@quasar/extras/material-icons'
 
 import EventBus from 'src/utils/event-bus'
 import p from 'src/utils/promise'
@@ -135,6 +136,11 @@ export default {
 
     this.destroyMarkers()
     delete window.stlMapMarkers
+  },
+  created () {
+    this.icons = {
+      matFlag,
+    }
   },
   methods: {
     async afterAuth () {
@@ -601,7 +607,7 @@ export default {
               class="flag-text text-grey"
               flat
               no-caps
-              icon="flag"
+              :icon="icons.matFlag"
               @click="flagHero(missionDialogAsset.id)"
             >
               <AppContent class="q-pl-sm" entry="prompt" field="flag_content" />

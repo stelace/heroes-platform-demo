@@ -3,6 +3,7 @@ import { mapState, mapGetters } from 'vuex'
 import * as mutationTypes from 'src/store/mutation-types'
 
 import { event as gaEvent } from 'vue-analytics'
+import { matAddBox, matSearch } from '@quasar/extras/material-icons'
 
 import AppLocaleSwitch from 'src/components/AppLocaleSwitch'
 import AppLogo from 'src/components/AppLogo'
@@ -75,6 +76,12 @@ export default {
       'defaultSearchMode',
       'isDemoMode'
     ]),
+  },
+  created () {
+    this.icons = {
+      matAddBox,
+      matSearch,
+    }
   },
   methods: {
     toggleMenu (visible = !this.isMenuOpened) {
@@ -226,7 +233,7 @@ export default {
             <QBtn
               :aria-label="$t({ id: 'form.search.query_placeholder' })"
               color="primary"
-              icon="search"
+              :icon="icons.matSearch"
               flat
               dense
               rounded
@@ -333,7 +340,7 @@ export default {
         :loading="content.fetchingContentStatus"
         :rounded="style.roundedTheme"
         :label="$t({ id: 'navigation.new_listing' })"
-        icon="add_box"
+        :icon="icons.matAddBox"
         color="secondary"
         align="between"
         dense

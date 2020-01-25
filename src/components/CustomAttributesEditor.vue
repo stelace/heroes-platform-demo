@@ -1,5 +1,6 @@
 <script>
 import { sortBy, upperFirst, isEqual } from 'lodash'
+import { matClose, matFlashOn } from '@quasar/extras/material-icons'
 
 export default {
   props: {
@@ -48,6 +49,12 @@ export default {
       if (this.sync && !isEqual(this.customAttributes, v)) {
         this.customAttributes = v
       }
+    }
+  },
+  created () {
+    this.icons = {
+      matClose,
+      matFlashOn,
     }
   },
   methods: {
@@ -143,7 +150,7 @@ export default {
             <template v-slot:append>
               <QBtn
                 v-show="customAttributes[customAttribute.name]"
-                icon="close"
+                :icon="icons.matClose"
                 flat
                 dense
                 rounded
@@ -187,7 +194,7 @@ export default {
                 @remove="scope.removeAtIndex(scope.index)"
               >
                 <QAvatar
-                  :icon="customAttribute.materialIcon || 'flash_on'"
+                  :icon="customAttribute.materialIcon || icons.matFlashOn"
                   color="primary"
                   text-color="white"
                 />

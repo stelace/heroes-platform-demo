@@ -3,6 +3,7 @@ import { mapState, mapGetters } from 'vuex'
 import * as mutationTypes from 'src/store/mutation-types'
 import { debounce, groupBy, isEmpty, isPlainObject, pickBy, values } from 'lodash'
 import { date } from 'quasar'
+import { matArrowDownward, matArrowUpward, matCheck, matClose, matSort } from '@quasar/extras/material-icons'
 
 import CustomAttributesEditor from 'src/components/CustomAttributesEditor'
 // import DateRangePicker from 'src/components/DateRangePicker'
@@ -103,6 +104,15 @@ export default {
       'searchOptions',
       'searchModes'
     ])
+  },
+  created () {
+    this.icons = {
+      matArrowDownward,
+      matArrowUpward,
+      matCheck,
+      matClose,
+      matSort
+    }
   },
   methods: {
     toggleSearchMap (visible) {
@@ -240,7 +250,7 @@ export default {
       :rounded="style.roundedTheme"
       color="transparent"
       text-color="primary"
-      icon="search"
+      :icon="icons.matSearch"
       unelevated
       no-caps
       dense
@@ -369,7 +379,7 @@ export default {
     <QBtn
       v-show="sortBy"
       class="sort-button"
-      :icon="sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward'"
+      :icon="sortOrder === 'desc' ? icons.matArrowDownward : icons.matArrowUpward"
       color="primary"
       flat
       dense
@@ -381,8 +391,7 @@ export default {
       :rounded="style.roundedTheme"
       color="transparent"
       text-color="primary"
-      icon="sort"
-      icon-right=""
+      :icon="icons.matSort"
       unelevated
       no-caps
       dense
@@ -562,8 +571,8 @@ export default {
       :value="isSearchMapVisible"
       :label="$t({ id: 'pages.search.show_map' })"
       color="positive"
-      checked-icon="check"
-      unchecked-icon="close"
+      :checked-icon="icons.matCheck"
+      :unchecked-icon="icons.matClose"
       left-label
       @input="toggleSearchMap"
     />
