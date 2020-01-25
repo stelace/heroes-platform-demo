@@ -43,10 +43,7 @@ export default {
     /* eslint-enable camelcase */
   },
   data () {
-    return {
-      hasLoadingScreen: true,
-      hideLoadingScreenTimeout: null
-    }
+    return {}
   },
   computed: {
     ...mapState([
@@ -81,7 +78,6 @@ export default {
   },
   async mounted () {
     this.$store.dispatch('initApp')
-    this.hideLoadingScreen()
 
     this.$socket.client.open()
 
@@ -91,38 +87,8 @@ export default {
     EventBus.$on('refreshSocket', () => {
       this.refreshSocket()
     })
-
-    this.$router.afterEach((to, from) => {
-      if (this.hasLoadingScreen && from && from.name === 'home') {
-        clearTimeout(this.hideLoadingScreenTimeout)
-        const loadingBackground = window.document.querySelector('#app-loading-background')
-        loadingBackground.classList.add('-hide')
-      }
-    })
   },
   methods: {
-    async hideLoadingScreen () {
-      const loadingContainer = window.document.querySelector('#app-loading-container')
-      const loadingBackground = window.document.querySelector('#app-loading-background')
-
-      if (loadingContainer) loadingContainer.classList.add('loaded')
-
-      // first currentRoute is MainLayout so we rather use window.location
-      const path = window.location.pathname
-      // Ensuring smooth transition with home hero background
-      if (!loadingBackground) return
-      if (path === '/') {
-        await new Promise(resolve => {
-          this.hideLoadingScreenTimeout = setTimeout(() => {
-            this.hasLoadingScreen = false
-            resolve()
-          }, 10000)
-        })
-        loadingBackground.classList.add('-hide')
-      } else {
-        loadingBackground.classList.add('-fade-out')
-      }
-    },
     refreshSocket () {
       this.$socket.client.close()
       this.$socket.client.open()

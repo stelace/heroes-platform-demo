@@ -157,10 +157,8 @@ export default {
       'defaultActiveAssetType',
     ]),
   },
-  async preFetch ({ store }) {
-    await store.dispatch('initEditAssetPage')
-  },
   async mounted () {
+    this.$store.dispatch('initEditAssetPage')
     EventBus.$on('authStatusChanged', (status) => this.onAuthChange(status))
   },
   beforeDestroy () {
