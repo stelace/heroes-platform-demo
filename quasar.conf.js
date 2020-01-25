@@ -3,9 +3,12 @@ const PreloadPlugin = require('@vue/preload-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
 const util = require('util')
+const readFile = util.promisify(fs.readFile)
+const writeFile = util.promisify(fs.writeFile)
 const deleteFile = util.promisify(fs.unlink)
 const renameFile = util.promisify(fs.rename)
 const { execSync } = require('child_process')
@@ -110,6 +113,8 @@ module.exports = function (ctx) {
   // Quasar config //
   // ///////////// //
 
+  const splittedVendorChunks = ['mapbox']
+
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
@@ -140,7 +145,7 @@ module.exports = function (ctx) {
 
     vendor: { // Exclude or add these to vendor chunk
       add: [],
-      remove: ['mapbox']
+      remove: splittedVendorChunks
     },
 
     // framework: 'all', // --- includes everything; for dev only!
@@ -294,6 +299,15 @@ module.exports = function (ctx) {
           // cf. app.html served in netlify.toml for more info
           await renameFile(path.join(spa, 'index.html'), path.join(spa, 'app.html'))
           await renameFile(path.join(spa, 'home.html'), path.join(spa, 'index.html'))
+
+          const removeTmpTags = html => html
+            .replace(/\s*<([a-z]+) [^>]*data-removed-during-build.*>([^<]|\s)*<\/\1>/gm, '')
+          const prerendered = glob.sync('dist/spa/**/*.html')
+          await pMap(prerendered, async (f) => {
+            const p = path.join(__dirname, f)
+            const html = await readFile(p, 'utf8')
+            await writeFile(p, removeTmpTags(html), 'utf8')
+          })
         }
       },
 
@@ -331,8 +345,6 @@ module.exports = function (ctx) {
                 '/s',
                 '/n',
               ],
-              // renderAfterElementExists: '#q-app',
-              renderAfterDocumentEvent: 'prerender-ready',
               postProcess: context => {
                 // Defer scripts and tell Vue it's been server rendered to trigger hydration
                 context.html = context.html
@@ -349,6 +361,40 @@ module.exports = function (ctx) {
               }
             })
           )
+
+          const criticalCSSConfig = {
+            // https://github.com/addyosmani/critical#options
+            inline: true,
+            minify: true,
+            extract: false,
+            dimensions: [{
+              height: 565,
+              width: 360
+            },
+            {
+              height: 720,
+              width: 1360
+            }],
+            penthouse: {
+              blockJSRequests: false,
+              keepLargerMediaQueries: true,
+              /* screenshots: {
+                basePath: 'criticalcss',
+              } */
+            }
+          }
+          cfg.plugins.push(new HtmlCriticalWebpackPlugin({
+            base: path.resolve(__dirname, 'dist/spa'),
+            src: 'home.html',
+            dest: 'home.html',
+            ...criticalCSSConfig
+          }))
+          cfg.plugins.push(new HtmlCriticalWebpackPlugin({
+            base: path.resolve(__dirname, 'dist/spa/s'),
+            src: 'index.html',
+            dest: 'index.html',
+            ...criticalCSSConfig
+          }))
         }
       },
 
@@ -361,8 +407,6 @@ module.exports = function (ctx) {
           chain.plugins.delete('prefetch')
 
           const stelaceI18nRegex = new RegExp(`i18n-stl-${defaultLanguage}`)
-          const iconFontRegex = /\.woff2(\?.*)?$/
-          const appFontsRegex = /app-fonts/
           const landingChunksRegex = /[~\\/]landing[.~]/
           const appChunksRegex = /[~\\/]app[.~]/
 
@@ -377,8 +421,6 @@ module.exports = function (ctx) {
                 /i18n-q-lang/,
                 // Ensures we don’t prefetch AND preload
                 stelaceI18nRegex,
-                iconFontRegex,
-                appFontsRegex,
                 landingChunksRegex,
                 appChunksRegex,
                 // Heaviest libraries to load only if needed
@@ -387,19 +429,12 @@ module.exports = function (ctx) {
                 /phone-validation/,
                 // Don’t forget to add .map files included in default blacklist
                 /\.map$/,
+                /\.css$/, // using critical+loadCSS
               ]
             }])
 
           // Very important to chain preloads from least to most important
           // (e.g. vendor after translations)
-          chain.plugin('preloadFonts') // only icon font for now
-            .use(PreloadPlugin, [{
-              rel: 'preload',
-              include: 'allAssets',
-              fileWhitelist: [iconFontRegex, appFontsRegex]
-              // only load most common font format: preload is not handled by IE11 anyway
-              // Just change RegExp above to woff2? if needed
-            }])
           chain.plugin('preloadI18n')
             .use(PreloadPlugin, [{
               rel: 'preload',
@@ -414,6 +449,9 @@ module.exports = function (ctx) {
                 // Ensures landing pages are loaded as fast as possible
                 landingChunksRegex,
                 appChunksRegex
+              ],
+              fileBlacklist: [
+                /\.css$/, // using critical+loadCSS
               ]
             }])
           // Most important files last
@@ -421,7 +459,11 @@ module.exports = function (ctx) {
             .use(PreloadPlugin, [{
               rel: 'preload',
               include: 'initial',
-              fileBlacklist: [/\.map$/, /hot-update\.js$/]
+              fileBlacklist: [
+                /\.map$/,
+                /hot-update\.js$/,
+                /\.css$/, // using critical+loadCSS
+              ]
             }])
 
           // chain.optimization is a "ChainedMap"
