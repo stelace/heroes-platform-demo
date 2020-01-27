@@ -53,7 +53,7 @@
     "chalk": "^3.0.0",
     "commander": "^4.1.0",
     "copy-webpack-plugin": "^5.1.1",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
