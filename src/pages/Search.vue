@@ -107,27 +107,26 @@ export default {
   // Same event is also generated every minute by Stelace reccurent Task
   // In a tracking app, each asset could also generate its own custom Events (e.g. position update)
   async mounted () {
+    await Promise.all([
+      this.$store.dispatch('fetchConfig'),
+      this.$store.dispatch('fetchAssetsRelatedResources'),
+    ])
+
+    if (!this.$store.state.search.searchMode) {
+      await this.$store.dispatch('selectSearchMode', { searchMode: this.$store.getters.defaultSearchMode })
+    }
+
+    await this.$store.dispatch('searchAssets')
     this.$store.dispatch('getHighestPrice')
+
     await new Promise(resolve => setTimeout(resolve, 2000))
+
     p.map(this.searchedAssets.filter(this.endedMission), async asset => {
       await this.$store.dispatch('sendCustomEvent', {
         type: 'assign_mission',
         objectId: asset.id
       })
     }, { concurrency: 2 })
-  },
-  // search results on server-side for SEO
-  async preFetch ({ store }) {
-    await Promise.all([
-      store.dispatch('fetchConfig'),
-      store.dispatch('fetchAssetsRelatedResources'),
-    ])
-
-    if (!store.state.search.searchMode) {
-      await store.dispatch('selectSearchMode', { searchMode: this.defaultSearchMode })
-    }
-
-    await store.dispatch('searchAssets')
   },
   beforeDestroy () {
     this.$store.commit(mutationTypes.TOGGLE_FILTER_DIALOG, { visible: false })

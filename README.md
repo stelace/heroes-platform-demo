@@ -11,14 +11,25 @@ Feel free to [fork](
 
 ---
 
-This __Web Platform starter kit with pre-configured serverless deployment__ leverages Stelace Search and Automation APIs to run a real-time platform full of super heroes operating in NYC.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6532f66b-bef6-40cd-963b-81f1481e3a69/deploy-status)](https://app.netlify.com/sites/stelace-heroes-platform-demo/deploys)[ ![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
+This __Web Platform starter kit with pre-configured serverless deployment__ leverages Stelace Search and Automation APIs to run a real-time platform full of super heroes operating in NYC. Back-end relies on [open-source](https://github.com/stelace/stelace) [Stelace API](https://stelace.com) server.
+
+## Contents
+
+- [Features :gift:](#features-gift)
+  - [Fast by default :checkered_flag:](#fast-by-default-checkered_flag)
+  - [Integrations](#integrations)
+- [Stack](#stack)
+- [Getting started](#getting-started)
+- [Deployment](#deployment)
+
+[![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
 
 - __[Live Demo](https://heroes.demo.stelace.com/s)__
 - [Stelace docs quick start](https://stelace.com/docs/getting-started)
 - [Blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/)
 - [More details](./HEROES.md) on how this works
-
-[![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
 
 Free your mind and imagine how many cool things you could build on your own with Stelace API…
 From online marketplaces to real-time platforms.
@@ -27,13 +38,11 @@ A more classical [marketplace starter kit](https://github.com/stelace/marketplac
 
 **What is Stelace?**
 
-[Stelace](https://stelace.com/) provides search, inventory and user management infrastructure and APIs for Web platforms, ranging from search-intensive marketplaces to online community apps.
+[Stelace API](https://stelace.com/) provides advanced search, asset and user management, automation and content delivery APIs for Web platforms ranging from search-intensive marketplaces to online community apps.
 
-Stelace offers powerful backend and APIs including advanced search, automation, and content delivery, to let you focus on what makes your platform unique.
+Stelace [open-source marketplace backend](https://github.com/stelace/stelace) lets you focus on what makes your platform unique.
 
 [API Docs](https://stelace.com/docs)
-
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![Netlify Status](https://api.netlify.com/api/v1/badges/6532f66b-bef6-40cd-963b-81f1481e3a69/deploy-status)](https://app.netlify.com/sites/stelace-heroes-platform-demo/deploys)
 
 ---
 
@@ -45,12 +54,21 @@ Stelace offers powerful backend and APIs including advanced search, automation, 
 - Automation with Stelace [Workflows](https://stelace.com/docs/command/workflows) and Tasks, making the Website demo aware of Heroes missions and locations in real-time, as you would for a ride-sharing platform (like Lyft) :traffic_light:
 - Headless CMS :page_with_curl: with Stelace [Content API](https://stelace.com/docs/content)
 - i18n :earth_africa: and full [translations](./docs/i18n.md)
-- [Performance](./docs/performance.md) (90+ Lighthouse score) :checkered_flag:
 - JSON [data import script](./docs/development-data.md), including Assets in CSV format.
 - …
 - and [much more](https://stelace.com) with Stelace API
 
-## Integrations
+### Fast by default :checkered_flag:
+
+- Pre-rendered static pages for fastest page load, with Vue.js hydrating into full SPA.
+- Code-splitting with optimized Webpack config in `quasar.conf.js`.
+- Image compression using WebP and serverless resizing using AWS Lambda
+- Ressource prefetching and preloading
+- PWA-ready thanks to Quasar
+
+This kit follows the [PRPL pattern](https://web.dev/apply-instant-loading-with-prpl/): more info in [docs](./docs/performance.md).
+
+### Integrations
 
 Leverage these integrations to start running your platform even faster:
 
@@ -71,9 +89,9 @@ Serverless [JAMStack architecture](https://jamstack.org/):
 
 Node.js >= 10.18 is used for tooling.
 
-## Make it your own
+## Getting started
 
-You first need to get your Stelace API keys. Good news: [it’s free](https://stelace.com/pricing).
+You need your Stelace API Keys to go the _serverless_ route. Good news: [you can it try for free](https://stelace.com/pricing).
 
 1. Clone this repository
 
@@ -138,11 +156,11 @@ You just have to click "_Deploy to netlify_" above and follow the instructions t
 
 Please refer to [deployment docs section](./docs/deployment.md) for more details or alternatives.
 
-## Stelace Dashboard
+## Hosted Stelace Server and Dashboard
 
-Create you own account for free to build your own platform and use [official Stelace dashboard](
+Create a [Stelace account](
   https://stelace.com
-), enabling your team to access real-time stats, settings, live design and content editing with translation tools, asset and user management and much more.
+) to get team access to real-time stats, settings, live design and content editing with translation tools, asset and user management, and much more.
 
 [
   ![Stelace Dashboard](https://user-images.githubusercontent.com/12909094/38527674-415ac06c-3c5c-11e8-89d3-c92c3be1d377.png)
