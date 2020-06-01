@@ -918,14 +918,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.3":
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.3.tgz#0811944f73a6c926bb2ad35e918dcc1bfab279f1"
-  integrity sha512-fVHx1rzEmwB130VTkLnxR+HmxcTjGzH12LYQcFFoBwakMd3aOMD4OsRN7tGG/UOYE2ektgFrS8uACAoRk1CY0w==
-  dependencies:
-    regenerator-runtime "^0.13.2"
-
-"@babel/runtime@^7.8.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4":
   version "7.8.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.7.tgz#8fefce9802db54881ba59f90bb28719b4996324d"
   integrity sha512-+AATMUFppJDw6aiR5NVPHqIQBlV/Pj8wY/EZH+lmvRdUo9xBaz/rF3alAwFJQavvKfeOlPE7oaaDHVbcySbCsg==
@@ -9604,10 +9597,10 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
-stelace@0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/stelace/-/stelace-0.13.0.tgz#543d464d484a358d276ffd44aad82fffef3b730a"
-  integrity sha512-pHidPXN2WL0CRf/L3oOoZ47R8A1hUaUTpNONYDyDL8cHNDkeeMaFz0439rsjPGpjhJYEmfYU7yelusUIS6wHiw==
+stelace@0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/stelace/-/stelace-0.14.0.tgz#7db79eac425894843b0ca1f1bd5adfdc485f2263"
+  integrity sha512-C9LGCvMgOjjZB7P5wQz/nOWNdjgxQJnpYJ9LYEVWdtDmmZsMCAnh+caIyJ2KWJNgvcjoVGOyOp9+Uo+GquREfA==
   dependencies:
     "@babel/runtime" "^7.8.3"
     axios "^0.19.0"
