@@ -68,7 +68,7 @@
     "husky": ">=4.2.5",
     "i18n-compile": "^1.1.1",
     "lint-staged": ">=10.2.10",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^11.0.0",
     "p-map": "^4.0.0",
     "p-props": "^4.0.0",
     "webfontloader": "^1.6.28"
