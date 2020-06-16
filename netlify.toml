@@ -1,7 +1,7 @@
-[Settings]
+[settings]
   # ID = "automatically set by Netlify or equal to $NETLIFY_ID_FOR_PRODUCTION when applicable"
 
-[Build]
+[build]
   publish = "dist/spa"
   command = "yarn build"
   functions = ""
