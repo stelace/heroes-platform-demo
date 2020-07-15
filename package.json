@@ -71,6 +71,7 @@
     "markdown-it": "^11.0.0",
     "p-map": "^4.0.0",
     "p-props": "^4.0.0",
+    "preload-webpack-plugin": "^3.0.0-beta.4",
     "webfontloader": "^1.6.28"
   },
   "engines": {
