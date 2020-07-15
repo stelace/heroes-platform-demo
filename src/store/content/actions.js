@@ -55,7 +55,7 @@ export async function fetchAppContent ({ state, commit, getters, dispatch }, { l
     // About using [request] in chunk name: https://github.com/webpack/webpack/issues/4807
 
     const loadDefaultTranslations = import(/* webpackChunkName: 'i18n-stl-[request]' */
-      `src/i18n/build/${locale}.json`
+      'src/i18n/build/' + locale + '.json'
     )
       .then(translations => {
         const localEntries = translations.default
@@ -80,7 +80,7 @@ export async function fetchAppContent ({ state, commit, getters, dispatch }, { l
     // We do not wait for Quasar language pack since it’s not critical
     import(/* webpackInclude: /(en-us|fr)\.js$/ */
       // https://quasar.dev/options/quasar-language-packs#Dynamically-Picking-Default-Language
-      `quasar/lang/${locale === 'en' ? 'en-us' : locale}`
+      'quasar/lang/' + (locale === 'en' ? 'en-us' : locale)
     )
       .then(quasarTranslations => Quasar.lang.set(quasarTranslations.default))
       .catch(logger)
