@@ -22,7 +22,7 @@
   "dependencies": {
     "@quasar/extras": "^1.9.7",
     "@sentry/browser": "^5.17.0",
-    "@sentry/integrations": "^5.16.1",
+    "@sentry/integrations": "^5.24.2",
     "axios": "~0.20.0",
     "bezier-easing": "^2.1.0",
     "lodash": "^4.17.20",
