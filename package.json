@@ -20,7 +20,7 @@
     "seed": "node scripts/init-data.js"
   },
   "dependencies": {
-    "@quasar/extras": "^1.9.10",
+    "@quasar/extras": "^1.9.12",
     "@sentry/browser": "^5.29.2",
     "@sentry/integrations": "^5.29.0",
     "axios": "~0.21.0",
