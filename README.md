@@ -113,7 +113,7 @@ You need to fill the following environment variables:
 
 You can get your API Keys in [Stelace Dashboard](https://stelace.com/dashboard).
 
-4. Seed [data](./docs/development-data.md) and [workflows](https://stelace.com/docs/command/worflows).
+4. Seed [data](./docs/development-data.md) and [workflows](https://stelace.com/docs/command/workflows).
 
 ```sh
 yarn seed
