@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.9.12",
-    "@sentry/browser": "^6.2.1",
+    "@sentry/browser": "^6.2.3",
     "@sentry/integrations": "^6.0.1",
     "axios": "~0.21.1",
     "bezier-easing": "^2.1.0",
