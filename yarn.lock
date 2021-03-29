@@ -10588,10 +10588,10 @@ vue-slicksort@^1.1.3:
   resolved "https://registry.yarnpkg.com/vue-slicksort/-/vue-slicksort-1.1.3.tgz#f8e0a1623bfb8aa39db683e28ac7bea5d9a2d9dc"
   integrity sha512-zGa0t2tyYOJpHsg2eqLZS095ZLHJsyPBoxlRZ/UUzE17VUM0skdz0MElp3/LHrUuK+MzD7wV2cAPZ+LNq6C/nw==
 
-vue-socket.io-extended@4.0.7:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/vue-socket.io-extended/-/vue-socket.io-extended-4.0.7.tgz#814812679229258d1e5829f563a99ac0c313d717"
-  integrity sha512-rLPgQwqsHezC2CWGTyF3EntfdaMhlX9wI+7l8Qw8Hq7Zhf0HKR3JAEChC8ISPyYOeSFjh638CAGBv8mbVLa76w==
+vue-socket.io-extended@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/vue-socket.io-extended/-/vue-socket.io-extended-4.1.0.tgz#c87ded5202b68580f8ffbd96f47c1f1d6e0c5b6d"
+  integrity sha512-8a7eeHkUB6fnMtgHw0QrENHhgRF+VcZlz24dYvGZCZkxY8S0xO7e88GTz7fxj7HJ/uSu701Gv8FDi80bIzdqMQ==
   dependencies:
     "@types/socket.io-client" "1.4.36"
 
