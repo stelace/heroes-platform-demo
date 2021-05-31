@@ -1321,10 +1321,10 @@
     babel-plugin-dynamic-import-node "^2.3.0"
     babel-plugin-module-resolver "^4.0.0"
 
-"@quasar/extras@^1.9.12":
-  version "1.9.12"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.9.12.tgz#33e8079d194ac64dabef570750b528db831fe52d"
-  integrity sha512-RZxwvOBYfptUUFUz81fsgRCaifB/rdwRvb7+/+ng5OQyK+VqRoCJZK6GDWNZPj0wbNNyKprX28Mem3TNWTHCMg==
+"@quasar/extras@^1.10.6":
+  version "1.10.6"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.10.6.tgz#9d7a609bc941d1ec40ba42718b6b39631baf982f"
+  integrity sha512-LdqgITUDWr6c3bTS0Br/UIE+92JvUdZ0mu08qM4C+y0t6Q4i4WYgbjurLJKpU55g5zUXvzra868qbljLbNSLxg==
 
 "@quasar/fastclick@1.1.4":
   version "1.1.4"
