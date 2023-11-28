@@ -1,7 +1,5 @@
 [![Stelace-platform-runner](https://user-images.githubusercontent.com/12909094/59638847-c41f1900-9159-11e9-9fa5-6d7806d57c92.png)](https://stelace.com)
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/stelace/heroes-platform-demo)
-
 # Stelace API Starter Kit
 
 > This Stelace starter kit is free to use, under the terms of the [MIT license](./LICENSE).
@@ -132,11 +130,7 @@ Enjoy your platform :)
 
 ## Deployment
 
-We’ve set up continuous deployment for you with Netlify.
-
-You just have to click "_Deploy to netlify_" above and follow the instructions to deploy.
-
-Please refer to [deployment docs section](./docs/deployment.md) for more details or alternatives.
+Please refer to [deployment docs section](./docs/deployment.md) for more details.
 
 ## Stelace Dashboard
 
