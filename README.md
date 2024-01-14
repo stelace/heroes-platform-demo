@@ -11,7 +11,6 @@ Feel free to [fork](
 
 This __Web Platform starter kit with pre-configured serverless deployment__ leverages Stelace Search and Automation APIs to run a real-time platform full of super heroes operating in NYC.
 
-- __[Live Demo](https://heroes.demo.stelace.com/s)__
 - [Stelace docs quick start](https://stelace.com/docs/getting-started)
 - [Blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/)
 - [More details](./HEROES.md) on how this works
@@ -71,7 +70,7 @@ Node.js >= 10.18 is used for tooling.
 
 ## Make it your own
 
-You first need to get your Stelace API keys. Good news: [it’s free](https://stelace.com/pricing).
+You first need to get your Stelace API keys. Good news: [it’s free](https://github.com/stelace/stelace).
 
 1. Clone this repository
 
