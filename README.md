@@ -15,7 +15,7 @@ This __Web Platform starter kit with pre-configured serverless deployment__ leve
 - [Blog post](https://stelace.com/blog/building-a-real-time-web-platform-from-scratch-in-one-week/)
 - [More details](./HEROES.md) on how this works
 
-[![stelace-heroes-platform-screenshot](https://user-images.githubusercontent.com/12909094/60439766-abac0580-9c13-11e9-954d-9aaa7bc6f22e.gif)](https://heroes.demo.stelace.com/s)
+[demo.webm](https://github.com/stelace/marketplace-demo/assets/25850444/00836041-1fd2-4175-8a11-708ea44424ce)
 
 Free your mind and imagine how many cool things you could build on your own with Stelace API…
 From online marketplaces to real-time platforms.
