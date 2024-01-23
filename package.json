@@ -26,7 +26,7 @@
     "@quasar/extras": "^1.9.12",
     "@sentry/browser": "^6.3.5",
     "@sentry/integrations": "^6.4.1",
-    "axios": "~0.21.1",
+    "axios": "~1.6.0",
     "bezier-easing": "^2.1.0",
     "lodash": "^4.17.21",
     "mapbox-gl": "~2.2.0",
